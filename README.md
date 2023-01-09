@@ -44,7 +44,7 @@ The book is suitable for technical readers with an understanding of the fundamen
 *  [Wire Protocol: Framing and Extensibility](13_wire_protocol.asciidoc)
 *  [Lightning's Encrypted Message Transport](14_encrypted_transport.asciidoc)
 *  [Lightning Payment Requests](15_payment_requests.asciidoc)
-*  [Security and Privacy of the Lightning Network](16_security_privacy_ln.asciidoc)
+*  [Security and Privacy of the Lightning Network](16_security_privacy_ln_SPA.asciidoc)
 *  [Conclusion](17_conclusion.asciidoc)
 
 ### Appendices
