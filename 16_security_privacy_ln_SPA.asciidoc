@@ -1,24 +1,25 @@
-[[security_and_privacy]]
+[[seguridad_y_privacidad]]
 == Seguridad y Privacidad de pass:[<span class="keep-together">Lightning Network</span>]
 
-((("security and privacy", id="ix_16_security_privacy_ln-asciidoc0", range="startofrange")))En este capítulo, analizamos algunos de los problemas más importantes relacionados con la seguridad y la privacidad de Lightning Network. Primero, consideraremos la privacidad, lo que significa, cómo evaluarla y algunas cosas que puede hacer para proteger su propia privacidad mientras usa Lightning Network. Luego exploraremos algunos ataques comunes y técnicas de mitigación.
+((("seguridad y privacidad", id="ix_16_security_privacy_ln-asciidoc0", range="startofrange")))En este capítulo, analizamos algunos de los problemas más importantes relacionados con la seguridad y la privacidad de Lightning Network. Primero, consideraremos la privacidad, lo que significa, cómo evaluarla y algunas cosas que puede hacer para proteger su propia privacidad mientras usa Lightning Network. Luego exploraremos algunos ataques comunes y técnicas de mitigación.
 
-=== Why Is Privacy Important?
+=== ¿Por qué la Privacidad es importante?
 
-((("security and privacy","importance of privacy")))The key value proposition of cryptocurrency is censorship resistant money. Bitcoin offers participants the possibility of storing and transferring their wealth without interference by governments, banks, or corporations. The Lightning Network continues this mission.
+((("seguridad y privacidad","importancia de la privacidad"))) La proposición de valor de la criptomoneda es que estamos ante dinero resistente a la censura. Bitcoin ofrece a sus usuarios la posibilidad de almacenar y transferir su valor sin interferencias de los gobiernos, bancos o corporaciones. Lightning Network continua esta misión.
+//The key value proposition of cryptocurrency is censorship resistant money. Bitcoin offers participants the possibility of storing and transferring their wealth without interference by governments, banks, or corporations. The Lightning Network continues this mission.
 
 Unlike trivial scaling solutions like custodial Bitcoin banks, the Lightning Network aims to scale Bitcoin without compromising on self custody, which should lead to greater censorship resistance in the Bitcoin ecosystem. However, the Lightning Network operates under a different security model, which introduces novel security and privacy challenges.
 
 === Definitions of Privacy
 
-((("security and privacy","definitions of privacy", id="ix_16_security_privacy_ln-asciidoc1", range="startofrange")))The question, "Is Lightning private?" has no direct answer. Privacy is a complex topic; it is often difficult to precisely define what we mean by privacy, particularly if you are not a privacy researcher. Fortunately, privacy researchers use processes to analyze and evaluate the privacy characteristics of systems, and we can use them too! Let's look at how a security researcher might seek to answer the question, "Is Lightning private?" in two general steps.
+((("seguridad y privacidad","definitions of privacy", id="ix_16_security_privacy_ln-asciidoc1", range="startofrange")))The question, "Is Lightning private?" has no direct answer. Privacy is a complex topic; it is often difficult to precisely define what we mean by privacy, particularly if you are not a privacy researcher. Fortunately, privacy researchers use processes to analyze and evaluate the privacy characteristics of systems, and we can use them too! Let's look at how a security researcher might seek to answer the question, "Is Lightning private?" in two general steps.
 
 First, a privacy researcher would define a _security model_ that specifies what an adversary is capable of and aims to achieve.
 Then, they would describe the relevant properties of the system and check whether it conforms to the requirements.
 
 === Process to Evaluate Privacy
 
-((("security and privacy","evaluation process for privacy")))((("security assumptions")))A security model is based on a set of underlying _security assumptions_.
+((("seguridad y privacidad","evaluation process for privacy")))((("security assumptions")))A security model is based on a set of underlying _security assumptions_.
 In cryptographic systems, these assumptions are often centered around the mathematical properties of the cryptographic primitives, such as ciphers, signatures, and hash functions.
 The security assumptions of the Lightning Network are that the ECDSA signatures, SHA-256 hash function, and other cryptographic functions used in the protocol behave within their security definitions.
 For example, we assume that it is practically impossible to find a preimage (and second preimage) of a hash function.
@@ -64,7 +65,7 @@ The size and structure of fees affect the routing algorithm, and therefore can e
 
 === Anonymity Set
 
-((("anonymity set")))((("de-anonymization")))((("security and privacy","anonymity set")))What does it mean to de-anonymize someone?
+((("anonymity set")))((("de-anonymization")))((("seguridad y privacidad","anonymity set")))What does it mean to de-anonymize someone?
 In simple terms, de-anonymization implies linking some action with a person's real-world identity, such as their name or physical address.
 In privacy research, the notion of de-anonymization is more nuanced.
 First, we are not necessarily talking about names and addresses.
@@ -105,7 +106,7 @@ The smaller the anonymity set, the higher the chance of successful de-anonymizat
 [role="pagebreak-before less_space"]
 === Differences Between the Lightning Network and Bitcoin in Terms of Privacy
 
-((("security and privacy","differences between Lightning Network and Bitcoin in terms of privacy", id="ix_16_security_privacy_ln-asciidoc2", range="startofrange")))While it's true that transactions on the Bitcoin network do not associate real-world identities with Bitcoin addresses, all transactions are broadcast in cleartext and can be analyzed.
+((("seguridad y privacidad","differences between Lightning Network and Bitcoin in terms of privacy", id="ix_16_security_privacy_ln-asciidoc2", range="startofrange")))While it's true that transactions on the Bitcoin network do not associate real-world identities with Bitcoin addresses, all transactions are broadcast in cleartext and can be analyzed.
 Multiple companies have been established to de-anonymize users of Bitcoin and other cryptocurrencies.
 
 At first glance, Lightning provides better privacy than Bitcoin because Lightning payments are not broadcast to the whole network.
@@ -150,7 +151,7 @@ Now let's review some of the attacks on LN privacy that have been described in a
 
 === Attacks on Lightning
 
-((("security and privacy","attacks on Lightning", seealso="breaches of privacy", id="ix_16_security_privacy_ln-asciidoc3", range="startofrange")))Recent research describes various ways in which the security and privacy of the Lightning Network may be compromised.
+((("seguridad y privacidad","attacks on Lightning", seealso="breaches of privacy", id="ix_16_security_privacy_ln-asciidoc3", range="startofrange")))Recent research describes various ways in which the security and privacy of the Lightning Network may be compromised.
 
 ==== Observing Payment Amounts
 
@@ -335,7 +336,7 @@ This attack's capital commitment is higher than the commitment jamming attack be
 
 === Cross-Layer De-Anonymization
 
-((("breaches of privacy","cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc11", range="startofrange")))((("cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc12", range="startofrange")))((("security and privacy","cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc13", range="startofrange")))Computer networks are often layered.
+((("breaches of privacy","cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc11", range="startofrange")))((("cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc12", range="startofrange")))((("seguridad y privacidad","cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc13", range="startofrange")))Computer networks are often layered.
 Layering allows for separation of concerns and makes the whole system manageable.
 No one could design a website if it required understanding all the TCP/IP stack up to the physical encoding of bits in an optical cable.
 Every layer is supposed to provide the functionality to the layer above in a clean way.
@@ -417,7 +418,7 @@ The possible de-anonymization of Bitcoin entities illustrates how important it i
 
 === Lightning Graph
 
-((("Lightning graph", id="ix_16_security_privacy_ln-asciidoc14", range="startofrange")))((("security and privacy","Lightning graph", id="ix_16_security_privacy_ln-asciidoc15", range="startofrange")))The Lightning Network, as the name suggests, is a peer-to-peer network of payment channels.
+((("Lightning graph", id="ix_16_security_privacy_ln-asciidoc14", range="startofrange")))((("seguridad y privacidad","Lightning graph", id="ix_16_security_privacy_ln-asciidoc15", range="startofrange")))The Lightning Network, as the name suggests, is a peer-to-peer network of payment channels.
 Therefore, many of its properties (privacy, robustness, connectivity, routing efficiency) are influenced and characterized by its network nature.
 
 In this section, we discuss and analyze the Lightning Network from the point of view of network science.
@@ -496,7 +497,7 @@ Hopefully, multipart payments will help increase the effectiveness of payment ro
 
 === Centralization in the Lightning Network
 
-((("betweenness centrality")))((("central point dominance")))((("centralization, Lightning Network and")))((("security and privacy","centralization in Lightning Network")))A common metric to assess the centrality of a node in a graph is its _betweenness centrality_. Central point dominance is a metric derived from betweenness centrality, used to assess the centrality of a network.
+((("betweenness centrality")))((("central point dominance")))((("centralization, Lightning Network and")))((("seguridad y privacidad","centralization in Lightning Network")))A common metric to assess the centrality of a node in a graph is its _betweenness centrality_. Central point dominance is a metric derived from betweenness centrality, used to assess the centrality of a network.
 For a precise definition of central point dominance, the reader is referred to https://doi.org/10.2307/3033543[Freeman's work].
 
 The larger the central point dominance of a network is, the more centralized the network is.
@@ -508,7 +509,7 @@ It would be beneficial to explore the temporal nature of the LN graph in more de
 
 === Economic Incentives and Graph Structure
 
-((("Lightning graph","economic incentives and graph structure")))((("security and privacy","economic incentives and graph structure")))The LN graph forms spontaneously, and nodes connect to each other based on mutual interest.
+((("Lightning graph","economic incentives and graph structure")))((("seguridad y privacidad","economic incentives and graph structure")))The LN graph forms spontaneously, and nodes connect to each other based on mutual interest.
 As a result, incentives drive graph development.
 Let's look at some of the relevant incentives:
 
@@ -527,13 +528,13 @@ Put differently, a profit-seeker node will try to locate itself in the _center_ 
 
 === Practical Advice for Users to Protect Their Privacy
 
-((("security and privacy","practical advice for users to protect privacy")))We're still in the early stages of the Lightning Network.
+((("seguridad y privacidad","practical advice for users to protect privacy")))We're still in the early stages of the Lightning Network.
 Many of the concerns listed in this chapter are likely to be addressed as it matures and grows.
 In the meantime, there are some measures that you can take to guard your node against malicious users; something as simple as updating the default parameters that your node runs with can go a long way in hardening your node.
 
 === Unannounced Channels
 
-((("payment channel","unannounced channels")))((("security and privacy","unannounced channels")))((("unannounced channels")))If you intend to use the Lightning Network to send and receive funds between nodes and wallets you control, and have no interest in routing other users' payments, there is little need to announce your channels to the rest of the network.
+((("payment channel","unannounced channels")))((("seguridad y privacidad","unannounced channels")))((("unannounced channels")))If you intend to use the Lightning Network to send and receive funds between nodes and wallets you control, and have no interest in routing other users' payments, there is little need to announce your channels to the rest of the network.
 You could open a channel between, say, your desktop PC running a full node and your mobile phone running a Lightning wallet, and simply forgo the channel announcement discussed in <<ch03_How_Lightning_Works>>.
 These are sometimes called "private" channels; however, it is more correct to refer to them as "unannounced" channels because they are not strictly private.
 
@@ -559,7 +560,7 @@ Hence, while unannouned channels are not completely private, they do provide som
 [[routing_considerations]]
 === Routing Considerations
 
-((("denial-of-service (DoS) attacks","protecting against")))((("routing","security/privacy considerations")))((("security and privacy","routing considerations")))As covered in <<denial_of_service>>, nodes that open public channels expose themselves to the risk of a series of attacks on their channels.
+((("denial-of-service (DoS) attacks","protecting against")))((("routing","security/privacy considerations")))((("seguridad y privacidad","routing considerations")))As covered in <<denial_of_service>>, nodes that open public channels expose themselves to the risk of a series of attacks on their channels.
 While mitigations are being developed on the protocol level, there are many steps that a node can take to protect against denial of service attacks on their public channels:
 
 Minimum HTLC size:: On channel open, your node can set the minimum HTLC size that it will accept.
