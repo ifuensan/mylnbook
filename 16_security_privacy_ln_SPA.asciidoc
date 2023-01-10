@@ -5,21 +5,23 @@
 
 === ¿Por qué la Privacidad es importante?
 
-((("seguridad y privacidad","importancia de la privacidad"))) La proposición de valor de la criptomoneda es que estamos ante dinero resistente a la censura. Bitcoin ofrece a sus usuarios la posibilidad de almacenar y transferir su valor sin interferencias de los gobiernos, bancos o corporaciones. Lightning Network continua esta misión.
+((("seguridad y privacidad","importancia de la privacidad"))) La propuesta de valor clave de la criptomoneda es que estamos ante dinero resistente a la censura. Bitcoin ofrece a los participantes la posibilidad de almacenar y transferir su riqueza sin interferencias de los gobiernos, bancos o corporaciones. Lightning Network continúa con esta misión.
 //The key value proposition of cryptocurrency is censorship resistant money. Bitcoin offers participants the possibility of storing and transferring their wealth without interference by governments, banks, or corporations. The Lightning Network continues this mission.
 
-Unlike trivial scaling solutions like custodial Bitcoin banks, the Lightning Network aims to scale Bitcoin without compromising on self custody, which should lead to greater censorship resistance in the Bitcoin ecosystem. However, the Lightning Network operates under a different security model, which introduces novel security and privacy challenges.
+//Unlike trivial scaling solutions like custodial Bitcoin banks, the Lightning Network aims to scale Bitcoin without compromising on self custody, which should lead to greater censorship resistance in the Bitcoin ecosystem. However, the Lightning Network operates under a different security model, which introduces novel security and privacy challenges.
+A diferencia de las soluciones de escalado triviales como los bancos de custodia de Bitcoin, Lightning Network tiene como objetivo escalar Bitcoin sin comprometer la autocustodia, lo que debería conducir a una mayor resistencia a la censura en el ecosistema de Bitcoin. Sin embargo, Lightning Network opera bajo un modelo de seguridad diferente, que presenta nuevos desafíos de seguridad y privacidad.
 
-=== Definitions of Privacy
+=== Definiciones de privacidad
 
-((("seguridad y privacidad","definitions of privacy", id="ix_16_security_privacy_ln-asciidoc1", range="startofrange")))The question, "Is Lightning private?" has no direct answer. Privacy is a complex topic; it is often difficult to precisely define what we mean by privacy, particularly if you are not a privacy researcher. Fortunately, privacy researchers use processes to analyze and evaluate the privacy characteristics of systems, and we can use them too! Let's look at how a security researcher might seek to answer the question, "Is Lightning private?" in two general steps.
+((("seguridad y privacidad","definiciones de privacidad", id="ix_16_security_privacy_ln-asciidoc1", range="startofrange"))) A la pregunta, "¿Es Lightning privado?", no hay una respuesta directa. La privacidad es un tema complejo; a menudo es difícil definir con precisión lo que entendemos por privacidad, especialmente si no eres un investigador de privacidad. Afortunadamente, los investigadores de la privacidad utilizan proceesos para analizar y evaluar las características de un sistema en cuanto a privacidad, ¡y nosotros podemos utilizarlas también! Veamos cómo un investigador de seguridad podría tratar de responder a la pregunta "¿Es Lightning privado?" en dos pasos generales.
+//The question, "Is Lightning private?" has no direct answer. Privacy is a complex topic; it is often difficult to precisely define what we mean by privacy, particularly if you are not a privacy researcher. Fortunately, privacy researchers use processes to analyze and evaluate the privacy characteristics of systems, and we can use them too! Let's look at how a security researcher might seek to answer the question, "Is Lightning private?" in two general steps.
 
-First, a privacy researcher would define a _security model_ that specifies what an adversary is capable of and aims to achieve.
-Then, they would describe the relevant properties of the system and check whether it conforms to the requirements.
+Primero, un investigador de privacidad definiría un _modelo de seguridad_ que especifica lo que un adversario es capaz de hacer y pretende lograr.
+Luego, describirían las propiedades relevantes del sistema y verificarían si cumple con los requisitos.
 
-=== Process to Evaluate Privacy
+=== Proceso para evaluar la privacidad
 
-((("seguridad y privacidad","evaluation process for privacy")))((("security assumptions")))A security model is based on a set of underlying _security assumptions_.
+((("seguridad y privacidad","proceso para evaluar la privacidad")))((("security assumptions")))A security model is based on a set of underlying _security assumptions_.
 In cryptographic systems, these assumptions are often centered around the mathematical properties of the cryptographic primitives, such as ciphers, signatures, and hash functions.
 The security assumptions of the Lightning Network are that the ECDSA signatures, SHA-256 hash function, and other cryptographic functions used in the protocol behave within their security definitions.
 For example, we assume that it is practically impossible to find a preimage (and second preimage) of a hash function.
