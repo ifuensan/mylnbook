@@ -21,34 +21,35 @@ Luego, describirían las propiedades relevantes del sistema y verificarían si c
 
 === Proceso para evaluar la privacidad
 
-((("seguridad y privacidad","proceso para evaluar la privacidad")))((("security assumptions")))A security model is based on a set of underlying _security assumptions_.
-In cryptographic systems, these assumptions are often centered around the mathematical properties of the cryptographic primitives, such as ciphers, signatures, and hash functions.
-The security assumptions of the Lightning Network are that the ECDSA signatures, SHA-256 hash function, and other cryptographic functions used in the protocol behave within their security definitions.
-For example, we assume that it is practically impossible to find a preimage (and second preimage) of a hash function.
-This allows the Lightning Network to rely on the HTLC mechanism (which uses the preimage of a hash function) for the atomicity of multihop payments: nobody except the final recipient can reveal the payment secret and resolve the HTLC.
-We also assume a degree of connectivity in the network, namely that Lightning channels form a connected graph. Therefore, it is possible to find a path from any sender to any receiver. Finally, we assume network messages are propagated within certain timeouts.
+((("seguridad y privacidad","proceso para evaluar la privacidad")))((("security assumptions")))
+Un modelo de seguridad se basa en un conjunto de _supuestos de seguridad_ subyacentes.
+En los sistemas criptográficos, estas suposiciones a menudo se centran en las propiedades matemáticas de las primitivas criptográficas, como cifrados, firmas y funciones hash.
+Las suposiciones de seguridad de Lightning Network son que las firmas ECDSA, la función hash SHA-256 y otras funciones criptográficas utilizadas en el protocolo se comportan dentro de sus definiciones de seguridad.
+Por ejemplo, asumimos que es prácticamente imposible encontrar una preimagen (y una segunda preimagen) de una función hash.
+Esto permite que Lightning Network confíe en el mecanismo HTLC (que usa la preimagen de una función hash) para la atomicidad de los pagos multisalto: nadie excepto el destinatario final puede revelar el secreto del pago y resolver el HTLC.
+También asumimos un grado de conectividad en la red, es decir, que los canales Lightning forman un gráfico conectado. Por lo tanto, es posible encontrar un camino desde cualquier emisor a cualquier receptor. Finalmente, asumimos que los mensajes de red se propagan dentro de ciertos tiempos de espera.
 
-Now that we've identified some of our underlying assumptions, let's consider some possible adversaries.
+Ahora que hemos identificado algunas de nuestras suposiciones subyacentes, consideremos algunos posibles adversarios.
 
-Here are some possible models of adversaries in the Lightning Network.
-An "honest-but-curious" forwarding node can observe payment amounts, the immediately preceding and following nodes, and the graph of announced channels with their capacities.
-A very well-connected node can do the same but to a larger extent.
-For example, consider the developers of a popular wallet who maintain a node that their users connect to by default.
-This node would be responsible for routing a large share of payments to and from the users of that wallet.
-What if multiple nodes are under adversarial control?
-If two colluding nodes happen to be on the same payment path, they would understand that they are forwarding HTLCs belonging to the same payment because HTLCs have the same payment hash.
+Estos son algunos modelos posibles de adversarios en Lightning Network.
+Un nodo de reenvío "honesto pero curioso" puede observar los montos de los pagos, los nodos inmediatamente anteriores y posteriores, y el gráfico de los canales anunciados con sus capacidades.
+Un nodo muy bien conectado puede hacer lo mismo pero en mayor medida.
+Por ejemplo, considere a los desarrolladores de una billetera popular que mantienen un nodo al que sus usuarios se conectan de forma predeterminada.
+Este nodo sería responsable de enrutar una gran parte de los pagos hacia y desde los usuarios de esa billetera.
+¿Qué pasa si varios nodos están bajo control adversario?
+Si dos nodos en connivencia se encuentran en la misma ruta de pago, entenderán que están reenviando HTLC que pertenecen al mismo pago porque los HTLC tienen el mismo hash de pago.
 
 [NOTE]
 ====
-Multipart payments (see <<mpp>>) enable users to obfuscate their payment amounts given their nonuniform split sizes.
+Los Pagos Multiparte (ver <<mpp>>) permiten a los usuarios ofuscar sus montos de pago debido a sus tamaños de división no uniformes.
 ====
 
-What may be the goals of a Lightning attacker?
-Information security is often described in terms of three main properties: confidentiality, integrity, and availability.
+¿Cuáles pueden ser los objetivos de un atacante Lightning?
+La seguridad de la información a menudo se describe en términos de tres propiedades principales: confidencialidad, integridad y disponibilidad.
 
-Confidentiality:: The information only gets to intended recipients.
-Integrity:: The information does not get altered in transit.
-Availability:: The system is functioning most of the time.
+Confidencialidad:: La información solo llega a los destinatarios previstos.
+Integridad:: La información no se altera en tránsito.
+Disponibilidad:: El sistema funciona la mayor parte del tiempo.
 
 The important properties of the Lightning Network are mostly centered around confidentiality and availability. Some of the most important properties to protect include:
 
