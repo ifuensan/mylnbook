@@ -69,7 +69,7 @@ El tamaño y la estructura de las tarifas afectan el algoritmo de enrutamiento y
 === Conjunto de anonimato 
 //Anonymity Set 
 
-((("conjunto de anonimato")))((("desanonimizar")))((("seguridad y privacidad","conjunto de anonimato")))
+((("conjunto_de_anonimato")))((("desanonimizar")))((("seguridad y privacidad","conjunto de anonimato")))
 ¿Qué significa desanonimizar a alguien?
 En términos simples, la desanonimización implica vincular alguna acción con la identidad del mundo real de una persona, como su nombre o dirección física.
 
@@ -133,9 +133,9 @@ Es posible usar Lightning sobre Tor, pero muchos nodos no usan esta funcionalida
 Un usuario Lightning, al enviar un pago, tiene a sus vecinos en su conjunto de anonimato.
 Específicamente, un nodo de enrutamiento solo conoce los nodos inmediatamente anteriores y posteriores.
 El nodo de enrutamiento no sabe si sus vecinos inmediatos en la ruta de pago son el remitente o el receptor final.
-Por lo tanto, el conjunto de anonimato de un nodo en Lightning es aproximadamente igual al de sus vecinos (ver <<conjunto de anonimato>>).
+Por lo tanto, el conjunto de anonimato de un nodo en Lightning es aproximadamente igual al de sus vecinos (ver <<conjunto_de_anonimato>>).
 
-[[conjunto de anonimato]]
+[[conjunto_de_anonimato]]
 .The anonymity set of Alice and Bob constitutes their neighbors
 image::images/mtln_1601.png["The anonymity set of Alice and Bob constitutes their neighbors"]
 
