@@ -136,59 +136,47 @@ El nodo de enrutamiento no sabe si sus vecinos inmediatos en la ruta de pago son
 Por lo tanto, el conjunto de anonimato de un nodo en Lightning es aproximadamente igual al de sus vecinos (ver <<conjunto_de_anonimato>>).
 
 [[conjunto_de_anonimato]]
-.The anonymity set of Alice and Bob constitutes their neighbors
-image::images/mtln_1601.png["The anonymity set of Alice and Bob constitutes their neighbors"]
+.El conjunto de anonimato de Alice y Bob constituye sus vecinos
+image::images/mtln_1601.png["El conjunto de anonimato de Alice y Bob constituye sus vecinos"]
 
-Similar logic applies to payment receivers.
-Many users open only a handful of payment channels, therefore limiting their anonymity sets.
-Moreover, in Lightning, the anonymity set is static or at least slowly changing.
-In contrast, one can achieve significantly larger anonymity sets in on-chain CoinJoin transactions.
-CoinJoin transactions with anonymity sets larger than 50 are quite frequent.
-Typically, the anonymity sets in a CoinJoin transaction correspond to a dynamically changing set of users.
+Se aplica una lógica similar a los receptores de pago. Muchos usuarios abren solo un puñado de canales de pago, lo que limita sus conjuntos de anonimato. Además, en Lightning, el conjunto de anonimato es estático o al menos cambia lentamente.
 
-Finally, Lightning users can also be denied service, having their channels blocked or depleted by an attacker.
-Forwarding payments requires capital—a scarce resource!—to be temporarily blocked in HTLCs along the route.
-An attacker may send many payments but fail to finalize them, occupying honest users' capital for long periods.
-This attack vector is not present (or at least not as obvious) in Bitcoin.
+Por el contrario, uno puede lograr conjuntos de anonimato significativamente más grandes en transacciones CoinJoin en cadena. Las transacciones CoinJoin con conjuntos de anonimato mayores de 50 son bastante frecuentes.
+Por lo general, los conjuntos de anonimato en una transacción CoinJoin corresponden a un conjunto de usuarios que cambia dinámicamente. Finalmente, a los usuarios de Lightning también se les puede negar el servicio, y un atacante puede bloquear o agotar sus canales.
 
-In summary, while some aspects of the Lightning Network's architecture suggest that it is a step forward in terms of privacy compared to Bitcoin, other properties of the protocol may make attacks on privacy easier. Thorough research is needed to evaluate what privacy guarantees the Lightning Network provides and improve the state of affairs.
+El reenvío de pagos requiere que el capital (¡un recurso escaso!) se bloquee temporalmente en los HTLC a lo largo de la ruta. Un atacante puede enviar muchos pagos pero no finalizarlos, ocupando el capital de los usuarios honestos durante largos períodos.
 
-The issues discussed in this part of the chapter summarize research available in mid-2021. However, this area of research and development is growing quickly. We are happy to report that the authors are aware of multiple research teams currently working on Lightning privacy.
+Este vector de ataque no está presente (o al menos no es tan obvio) en Bitcoin. En resumen, aunque algunos aspectos de la arquitectura de Lightning Network sugieren que es un paso adelante en términos de privacidad en comparación con Bitcoin, otras propiedades del protocolo pueden facilitar los ataques a la privacidad. Se necesita una investigación exhaustiva para evaluar qué garantías de privacidad proporciona Lightning Network y mejorar la situación.
 
-Now let's review some of the attacks on LN privacy that have been described in academic literature.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc2")))
+Los temas discutidos en esta parte del capítulo resumen la investigación disponible a mediados de 2021. Sin embargo, esta área de investigación y desarrollo está creciendo rápidamente. Nos complace informar que los autores conocen varios equipos de investigación que trabajan actualmente en la privacidad de Lightning. Ahora revisemos algunos de los ataques a la privacidad de LN que se han descrito en la literatura académica. (((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc2")))
 
 
-=== Attacks on Lightning
+=== Ataques en Lightning
 
-((("seguridad y privacidad","attacks on Lightning", seealso="breaches of privacy", id="ix_16_security_privacy_ln-asciidoc3", range="startofrange")))Recent research describes various ways in which the security and privacy of the Lightning Network may be compromised.
+((("seguridad y privacidad","ataques en Lightning", seealso="violación de la privacidad", id="ix_16_security_privacy_ln-asciidoc3", range="startofrange")))Investigaciones recientes describen varias formas en las que la seguridad y la privacidad de Lightning Network pueden verse comprometidas.
 
-==== Observing Payment Amounts
+==== Observando los montos de pago
 
-((("breaches of privacy","observing payment amounts")))One of the goals for a privacy-preserving payment system is to hide the payment amount from uninvolved parties.
-The Lightning Network is an improvement over Layer 1 in this regard.
-While Bitcoin transactions are broadcast in cleartext and can be observed by anyone, Lightning payments only travel through a few nodes along the payment path.
-However, intermediary nodes do see the payment amount, although this payment amount might not correspond to the actual total payment amount (see <<mpp>>).
-This is necessary to create a new HTLC at every hop.
-The availability of payment amounts to intermediary nodes do not present an immediate threat.
-However, an _honest-but-curious_ intermediary node may use it as a part of a larger attack.
+((("violación de la privacidad","Observando los montos de pago")))Uno de los objetivos de un sistema de pago que preserva la privacidad es ocultar el monto del pago a las partes no involucradas.
+Lightning Network es una mejora sobre la Capa 1 en este sentido.
+Si bien las transacciones de Bitcoin se transmiten en texto sin cifrar y cualquier persona puede observarlas, los pagos Lightning solo viajan a través de unos pocos nodos a lo largo de la ruta de pago.
+Sin embargo, los nodos intermediarios ven el monto del pago, aunque este monto del pago puede no corresponder al monto del pago total real (ver <<mpp>>).
+Esto es necesario para crear un nuevo HTLC en cada salto.
+La disponibilidad de montos de pago para los nodos intermediarios no presenta una amenaza inmediata.
+Sin embargo, un nodo intermediario _honesto pero curioso_ puede usarlo como parte de un ataque mayor.
 
 
-==== Linking Senders and Receivers
+==== Vinculando remitentes y receptores
 
-((("breaches of privacy","linking senders and receivers", id="ix_16_security_privacy_ln-asciidoc4", range="startofrange")))An attacker might be interested in learning the sender and/or the receiver of a payment to reveal certain economic relationships.
-This breach of privacy could harm censorship resistance, as an intermediary node could censor payments to or from certain receivers or senders.
-Ideally, linking senders to receivers should not be possible to anyone other than the sender and the receiver.
+((("violación de la privacidad","vinculando remitentes y receptores", id="ix_16_security_privacy_ln-asciidoc4", range="startofrange")))Un atacante podría estar interesado en conocer el remitente y/o el receptor de un pago para revelar ciertas relaciones económicas.
+Esta violación de la privacidad podría dañar la resistencia a la censura, ya que un nodo intermediario podría censurar los pagos hacia o desde ciertos destinatarios o remitentes.
+Idealmente, la vinculación de remitentes con receptores no debería ser posible para nadie más que el remitente y el receptor.
 
-In the following sections, we will consider two types of adversaries: the off-path adversary and the on-path adversary.
-An off-path adversary tries to assess the sender and the receiver of a payment without participating in the payment routing process.
-An on-path adversary can leverage any information it might gain by routing the payment of interest.
+En las siguientes secciones, consideraremos dos tipos de adversarios: el adversario fuera del camino y el adversario en el camino.
+Un adversario fuera de la ruta intenta evaluar al remitente y al receptor de un pago sin participar en el proceso de enrutamiento del pago.
+Un adversario en camino puede aprovechar cualquier información que pueda obtener enrutando el pago de intereses.
 
-((("off-path adversary")))First, consider the _off-path adversary_.
-In the first step of this attack scenario, a potent off-path adversary deduces the individual balances in each payment channel via probing (described in a subsequent section) and forms a network snapshot at time __t~1~__. For simplicity's sake, let's make __t~1~__ equal 12:05.
-It then probes the network again at sometime later at time __t~2~__, which we'll make 12:10. The attacker would then compare the snapshots at 12:10 and 12:05 and use the differences between the two snapshots to infer information about payments that took place by looking at paths that have changed.
-In the simplest case, if only one payment occurred between 12:10 and 12:05, the adversary would observe a single path where the balances have changed by the same amounts.
-Thus, the adversary learns almost everything about this payment: the sender, the recipient, and the amount.
-If multiple payment paths overlap, the adversary needs to apply heuristics to identify such overlap and separate the payments.
+((("off-path adversary")))Primero, considere al _adversario fuera del camino_. En el primer paso de este escenario de ataque, un potente adversario fuera de ruta deduce los saldos individuales en cada canal de pago a través de un sondeo (descrito en una sección posterior) y forma una instantánea de la red en el momento __t~1~__. Para simplificar, hagamos que __t~1~__ sea igual a 12:05. Luego sondea la red nuevamente en algún momento posterior en el tiempo __t~2~__, que haremos 12:10. Luego, el atacante compararía las instantáneas a las 12:10 y las 12:05 y usaría las diferencias entre las dos instantáneas para inferir información sobre los pagos que se realizaron al observar las rutas que han cambiado. En el caso más simple, si solo se produjera un pago entre las 12:10 y las 12:05, el adversario observaría un único camino donde los saldos han cambiado en las mismas cantidades. Así, el adversario aprende casi todo sobre este pago: el remitente, el destinatario y el monto. Si varias rutas de pago se superponen, el adversario debe aplicar heurísticas para identificar dicha superposición y separar los pagos. 
 
 ((("on-path adversary")))Now, we turn our attention to an _on-path adversary_.
 Such an adversary might seem convoluted.
@@ -216,7 +204,7 @@ Finally, it's important to recognize that unknown or unstudied leakages probably
 
 ==== Revealing Channel Balances (Probing)
 
-((("breaches of privacy","revealing channel balances", id="ix_16_security_privacy_ln-asciidoc5", range="startofrange")))((("channel balances, revealing", id="ix_16_security_privacy_ln-asciidoc6", range="startofrange")))((("channel probing", id="ix_16_security_privacy_ln-asciidoc7", range="startofrange")))((("probing attack", id="ix_16_security_privacy_ln-asciidoc8", range="startofrange")))The balances of Lightning channels are supposed to be hidden for privacy and efficiency reasons.
+((("violación de la privacidad","revealing channel balances", id="ix_16_security_privacy_ln-asciidoc5", range="startofrange")))((("channel balances, revealing", id="ix_16_security_privacy_ln-asciidoc6", range="startofrange")))((("channel probing", id="ix_16_security_privacy_ln-asciidoc7", range="startofrange")))((("probing attack", id="ix_16_security_privacy_ln-asciidoc8", range="startofrange")))The balances of Lightning channels are supposed to be hidden for privacy and efficiency reasons.
 A Lightning node only knows the balances of its adjacent channels.
 The protocol provides no standard way to query the balance of a remote channel.
 
@@ -288,7 +276,7 @@ Finally, as multipart payments make the problem of insufficient capacity less se
 [[denial_of_service]]
 ==== Denial of Service
 
-((("breaches of privacy","denial-of-service attacks", id="ix_16_security_privacy_ln-asciidoc9", range="startofrange")))((("denial-of-service (DoS) attacks", id="ix_16_security_privacy_ln-asciidoc10", range="startofrange")))When resources are made publicly available, there is a risk that attackers may attempt to make that resource unavailable by executing a denial-of-service (DoS) attack.
+((("violación de la privacidad","denial-of-service attacks", id="ix_16_security_privacy_ln-asciidoc9", range="startofrange")))((("denial-of-service (DoS) attacks", id="ix_16_security_privacy_ln-asciidoc10", range="startofrange")))When resources are made publicly available, there is a risk that attackers may attempt to make that resource unavailable by executing a denial-of-service (DoS) attack.
 Generally, this is achieved by the attacker bombarding a resource with requests, which are indistinguishable from legitimate queries.
 The attacks seldom result in the target suffering financial loss, aside from the opportunity cost of their service being down, and are merely intended to aggrieve the target.
 
@@ -330,7 +318,7 @@ In the absence of fees for failed payments, the only cost to the attacker is the
 
 ==== Commitment Jamming
 
-((("breaches of privacy","commitment jamming")))((("commitment jamming")))Lightning nodes update their shared state using asymmetric commitment transactions, on which HTLCs are added and removed to facilitate payments.
+((("violación de la privacidad","commitment jamming")))((("commitment jamming")))Lightning nodes update their shared state using asymmetric commitment transactions, on which HTLCs are added and removed to facilitate payments.
 Each party is limited to a total of https://github.com/lightningnetwork/lightning-rfc/blob/c053ce7afb4cbf88615877a0d5fc7b8dbe2b9ba0/02-peer-protocol.md#the-open_channel-message[483] HTLCs in the commitment transaction at a time.
 A channel jamming attack allows an attacker to render a channel unusable by routing 483 payments through the target channel and holding them until they time out.
 
@@ -339,13 +327,13 @@ While this limit _may_ be increased, transactions are still limited by the block
 
 ==== Channel Liquidity Lockup
 
-((("breaches of privacy","channel liquidity lockup")))((("channel liquidity lockup")))A channel liquidity lockup attack is comparable to a channel jamming attack in that it routes payments through a channel and holds them so that the channel is unusable.
+((("violación de la privacidad","channel liquidity lockup")))((("channel liquidity lockup")))A channel liquidity lockup attack is comparable to a channel jamming attack in that it routes payments through a channel and holds them so that the channel is unusable.
 Rather than locking up slots on the channel commitment, this attack routes large HTLCs through a target channel, consuming all the channel's available bandwidth.
 This attack's capital commitment is higher than the commitment jamming attack because the attacking node needs more funds to route failed payments through the target.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc3")))
 
 === Cross-Layer De-Anonymization
 
-((("breaches of privacy","cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc11", range="startofrange")))((("cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc12", range="startofrange")))((("seguridad y privacidad","cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc13", range="startofrange")))Computer networks are often layered.
+((("violación de la privacidad","cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc11", range="startofrange")))((("cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc12", range="startofrange")))((("seguridad y privacidad","cross-layer de-anonymization", id="ix_16_security_privacy_ln-asciidoc13", range="startofrange")))Computer networks are often layered.
 Layering allows for separation of concerns and makes the whole system manageable.
 No one could design a website if it required understanding all the TCP/IP stack up to the physical encoding of bits in an optical cable.
 Every layer is supposed to provide the functionality to the layer above in a clean way.
@@ -410,7 +398,7 @@ For more privacy, aliases should be sufficiently different from one another.
 While the public announcement of IP addresses may be unavoidable for those nodes that wish to have incoming channels in the Lightning Network, linkability across nodes of the same user can be mitigated if the clients for each node are hosted with different service providers and thus IP addresses.
 
 ==== Cross-Layer Linking: Lightning Nodes and Bitcoin Entities
-((("Bitcoin entities","cross-layer linking to Lightning nodes")))((("breaches of privacy","cross-layer linking: Lightning nodes and Bitcoin entities")))((("cross-layer de-anonymization","cross-layer linking: Lightning nodes and Bitcoin entities")))((("Lightning node operation","cross-layer linking to Bitcoin entities")))Associating LN nodes to Bitcoin entities is a serious breach of privacy that is exacerbated by the fact that most LN nodes publicly expose their IP addresses.
+((("Bitcoin entities","cross-layer linking to Lightning nodes")))((("violación de la privacidad","cross-layer linking: Lightning nodes and Bitcoin entities")))((("cross-layer de-anonymization","cross-layer linking: Lightning nodes and Bitcoin entities")))((("Lightning node operation","cross-layer linking to Bitcoin entities")))Associating LN nodes to Bitcoin entities is a serious breach of privacy that is exacerbated by the fact that most LN nodes publicly expose their IP addresses.
 Typically, an IP address can be considered as a unique identifier of a user.
 Two widely observed behavior patterns reveal links between LN nodes and Bitcoin entities:
 
