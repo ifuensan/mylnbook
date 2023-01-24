@@ -66,56 +66,62 @@ Finalmente, como red de pago, Lightning Network depende de estímulos económico
 El tamaño y la estructura de las tarifas afectan el algoritmo de enrutamiento y, por lo tanto, pueden ayudar al atacante reenviando la mayoría de los pagos a través de sus nodos o evitar que esto suceda.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc1")))
 
 
-=== Anonymity Set
+=== Conjunto de anonimato 
+//Anonymity Set 
 
-((("anonymity set")))((("de-anonymization")))((("seguridad y privacidad","anonymity set")))What does it mean to de-anonymize someone?
-In simple terms, de-anonymization implies linking some action with a person's real-world identity, such as their name or physical address.
-In privacy research, the notion of de-anonymization is more nuanced.
-First, we are not necessarily talking about names and addresses.
-Discovering someone's IP address or telephone number may also be considered de-anonymization.
-A piece of information that allows linking a user's action to their previous actions is referred to as _identity_.
-Second, de-anonymization is not binary; a user is neither fully anonymous nor completely de-anonymized.
-Instead, privacy research looks at anonymity compared to the anonymity set.
+((("conjunto de anonimato")))((("desanonimizar")))((("seguridad y privacidad","conjunto de anonimato")))
+¿Qué significa desanonimizar a alguien?
+En términos simples, la desanonimización implica vincular alguna acción con la identidad del mundo real de una persona, como su nombre o dirección física.
 
-The _anonymity set_ is a central notion in privacy research.
-It refers to the set of identities such that, from an attacker's viewpoint, a given action could correspond to anyone in the set.
-Consider a real-life example.
-Imagine you meet a person on a city street.
-What is their anonymity set from your point of view?
-If you don't know them personally, and without any additional information, their anonymity set roughly equals the city's population, including travelers.
-If you additionally consider their appearance, you may be able to roughly estimate their age and exclude the city residents who are obviously older or younger than the person in question from the anonymity set.
-Furthermore, if you notice that the person walks into the office of Company X using an electronic badge, the anonymity set shrinks to the number pass:[<span class="keep-together">of Company</span>] X's employees and visitors.
-Finally, you may notice the license number of the car they used to arrive at the place.
-If you are a casual observer, this doesn't give you much.
-However, if you are a city official and have access to the database that matches license plate numbers with names, you can narrow down the anonymity set to just a few people: the car owner and any close friends and relatives that may have borrowed the car.
+En la investigación de la privacidad, la noción de desanonimización tiene más matices.
+Primero, no estamos necesariamente hablando de nombres y direcciones.
+Descubrir la dirección IP o el número de teléfono de alguien también puede considerarse anonimización.
+Una pieza de información que permite vincular la acción de un usuario con sus acciones anteriores se denomina _identidad_.
 
-This example illustrates a few important points.
-First, every bit of information may bring the adversary closer to their goal.
-It may not be necessary to shrink the anonymity set to the size of one.
-For instance, if the adversary plans a targeted denial-of-service (DoS) attack and can take down 100 servers, the anonymity set of 100 suffices.
-Second, the adversary can cross-correlate information from different sources.
-Even if a privacy leak looks relatively benign, we never know what it can achieve in combination with other data sources.
-Finally, especially in cryptographic settings, the attacker always has the "last resort" of a brute-force search.
-Cryptographic primitives are designed so that it is practically impossible to guess a secret such as a private key.
-Nevertheless, each bit of information brings the adversary closer to this goal, and at some point, it becomes attainable.
+En segundo lugar, la desanonimización no es binaria; un usuario no es completamente anónimo ni completamente desanonimizado.
+En cambio, la investigación de privacidad analiza el anonimato en comparación con el conjunto de anonimato.
 
-In terms of Lightning, de-anonymizing generally means deriving a correspondence between payments and users identified by node IDs.
-Each payment may be assigned a sender anonymity set and a receiver anonymity set.
-Ideally, the anonymity set consists of all the users of the network.
-This assures that the attacker has no information whatsoever.
-However, the real network leaks information that allows an attacker to narrow down the search.
-The smaller the anonymity set, the higher the chance of successful de-anonymization.
+El _conjunto de anonimato_ es una noción central en la investigación de la privacidad.
+Se refiere al conjunto de identidades tales que, desde el punto de vista de un atacante, una acción dada podría corresponder a cualquiera en el conjunto.
+Considere un ejemplo de la vida real.
+Imagina que conoces a una persona en una calle de la ciudad.
+¿Cuál es su anonimato establecido desde tú punto de vista?
+Si no lo conoces personalmente y sin ninguna información adicional, su conjunto de anonimato equivale aproximadamente a la población de la ciudad, incluidos los viajeros.
+Si además consideras su apariencia, es posible que pueda estimar aproximadamente su edad y excluir a los residentes de la ciudad que obviamente son mayores o menores que la persona en cuestión del conjunto de anonimato.
+Además, si observas que la persona ingresa a la oficina de la empresa X con una credencial electrónica,
+//the anonymity set shrinks to the number pass:[<span class="keep-together">of Company</span>] X's employees and visitors.
+el conjunto de anonimato se reduce al pase de número: de empleados y visitantes [<span class="keep-together">de la empresa</span>] X.
+Finalmente, puedes ver el número de matrícula del coche que utilizó para llegar al lugar.
+Si eres un observador casual, esto no te da mucho.
+Sin embargo, si tú eres un funcionario de la ciudad y tienes acceso a la base de datos que relaciona los números de matrícula con los nombres, puede reducir el anonimato establecido a solo unas pocas personas: el propietario del coche y cualquier amigo cercano y pariente que pueda haber tomado prestado dicho coche.
+
+Este ejemplo ilustra algunos puntos importantes.
+Primero, cada bit de información puede acercar al adversario a su objetivo.
+Puede que no sea necesario reducir el conjunto de anonimato al tamaño de uno.
+Por ejemplo, si el adversario planea un ataque de denegación de servicio (DoS) dirigido y puede derribar 100 servidores, el conjunto de anonimato de 100 es suficiente.
+En segundo lugar, el adversario puede correlacionar información de diferentes fuentes.
+Incluso si una fuga de privacidad parece relativamente benigna, nunca sabemos lo que puede lograr en combinación con otras fuentes de datos.
+Finalmente, especialmente en configuraciones criptográficas, el atacante siempre tiene el "último recurso" de una búsqueda de fuerza bruta.
+Las primitivas criptográficas están diseñadas para que sea prácticamente imposible adivinar un secreto como una clave privada.
+Sin embargo, cada bit de información acerca al adversario a este objetivo y, en algún momento, se vuelve alcanzable.
+
+En términos de Lightning, eliminar el anonimato generalmente significa derivar una correspondencia entre pagos y usuarios identificados por ID de nodo.
+A cada pago se le puede asignar un conjunto de anonimato de remitente y un conjunto de anonimato de receptor.
+Idealmente, el conjunto de anonimato consiste en todos los usuarios de la red.
+Esto asegura que el atacante no tiene información alguna.
+Sin embargo, la red real filtra información que permite a un atacante restringir la búsqueda.
+Cuanto más pequeño sea el conjunto de anonimato, mayor será la posibilidad de una desanonimización exitosa.
 
 [role="pagebreak-before less_space"]
-=== Differences Between the Lightning Network and Bitcoin in Terms of Privacy
+=== Diferencias entre Lightning Network y Bitcoin en términos de privacidad
 
-((("seguridad y privacidad","differences between Lightning Network and Bitcoin in terms of privacy", id="ix_16_security_privacy_ln-asciidoc2", range="startofrange")))While it's true that transactions on the Bitcoin network do not associate real-world identities with Bitcoin addresses, all transactions are broadcast in cleartext and can be analyzed.
-Multiple companies have been established to de-anonymize users of Bitcoin and other cryptocurrencies.
+((("seguridad y privacidad","diferencias entre Lightning Network y Bitcoin en términos de privacidad", id="ix_16_security_privacy_ln-asciidoc2", range="startofrange")))Si bien es cierto que las transacciones en la red de Bitcoin no asocian identidades del mundo real con direcciones de Bitcoin, todas las transacciones se transmiten en texto no cifrado y se pueden analizar.
+Se han creado varias empresas que buscan la forma de eliminar el anonimato de los usuarios de Bitcoin y otras criptomonedas.
 
-At first glance, Lightning provides better privacy than Bitcoin because Lightning payments are not broadcast to the whole network.
-While this improves the privacy baseline, other properties of the Lightning protocol may make anonymous payments more challenging.
-For instance, larger payments may have fewer routing options.
-This may allow an adversary who controls well-capitalized nodes to route most large payments and discover payment amounts and probably other details. Over time, as the Lightning Network grows, this may become less of a problem.
+A primera vista, Lightning brinda una mejor privacidad que Bitcoin porque los pagos de Lightning no se transmiten a toda la red.
+Si bien esto mejora la línea base de privacidad, otras propiedades del protocolo Lightning pueden hacer que los pagos anónimos sean más desafiantes.
+Por ejemplo, los pagos más grandes pueden tener menos opciones de enrutamiento.
+Esto puede permitir que un adversario que controle nodos bien capitalizados enrute la mayoría de los pagos grandes y, que descubra los cantidades y probablemente otros detalles. Con el tiempo, a medida que crece Lightning Network, esto puede convertirse en un problema menor.
 
 Another relevant difference between Lightning and Bitcoin is that Lightning nodes maintain a permanent identity, whereas Bitcoin nodes do not.
 A sophisticated Bitcoin user can easily switch nodes used to receive blockchain data and broadcast transactions.
