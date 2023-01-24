@@ -123,19 +123,19 @@ Si bien esto mejora la línea base de privacidad, otras propiedades del protocol
 Por ejemplo, los pagos más grandes pueden tener menos opciones de enrutamiento.
 Esto puede permitir que un adversario que controle nodos bien capitalizados enrute la mayoría de los pagos grandes y, que descubra los cantidades y probablemente otros detalles. Con el tiempo, a medida que crece Lightning Network, esto puede convertirse en un problema menor.
 
-Another relevant difference between Lightning and Bitcoin is that Lightning nodes maintain a permanent identity, whereas Bitcoin nodes do not.
-A sophisticated Bitcoin user can easily switch nodes used to receive blockchain data and broadcast transactions.
-A Lightning user, on the contrary, sends and receives payments through the nodes they have used to open their payment channels.
-Moreover, the Lightning protocol assumes that routing nodes announce their IP address in addition to their node ID.
-This creates a permanent link between node IDs and IP addresses, which may be dangerous, considering that an IP address is often an intermediary step in anonymity attacks linked to the user's physical location and, in most cases, real-world identity.
-It is possible to use Lightning over Tor, but many nodes do not use this functionality, as can be seen from https://1ml.com/statistics[statistics collected from node announcements].
+Otra diferencia relevante entre Lightning y Bitcoin es que los nodos Lightning mantienen una identidad permanente, mientras que los nodos Bitcoin no.
+Un usuario sofisticado de Bitcoin puede cambiar fácilmente los nodos utilizados para recibir datos de la blockchain y transmitir transacciones.
+Un usuario Lightning, por el contrario, envía y recibe pagos a través de los nodos que ha utilizado para abrir sus canales de pago.
+Además, el protocolo Lightning asume que los nodos de enrutamiento anuncian su dirección IP además de su ID de nodo.
+Esto crea un vínculo permanente entre los ID de nodo y las direcciones IP, lo que puede ser peligroso si se tiene en cuenta que una dirección IP suele ser un paso intermedio en los ataques de anonimato vinculados a la ubicación física del usuario y, en la mayoría de los casos, a la identidad del mundo real.
+Es posible usar Lightning sobre Tor, pero muchos nodos no usan esta funcionalidad, como se puede ver en https://1ml.com/statistics[estadísticas recopiladas de los nodos anunciados].
 
-A Lightning user, when sending a payment, has its neighbors in its anonymity set.
-Specifically, a routing node only knows the immediately preceding and following nodes.
-The routing node does not know whether its immediate neighbors in the payment route are the ultimate sender or receiver.
-Therefore, the anonymity set of a node in Lightning roughly equals its neighbors (see <<anonymity_set>>).
+Un usuario Lightning, al enviar un pago, tiene a sus vecinos en su conjunto de anonimato.
+Específicamente, un nodo de enrutamiento solo conoce los nodos inmediatamente anteriores y posteriores.
+El nodo de enrutamiento no sabe si sus vecinos inmediatos en la ruta de pago son el remitente o el receptor final.
+Por lo tanto, el conjunto de anonimato de un nodo en Lightning es aproximadamente igual al de sus vecinos (ver <<conjunto de anonimato>>).
 
-[[anonymity_set]]
+[[conjunto de anonimato]]
 .The anonymity set of Alice and Bob constitutes their neighbors
 image::images/mtln_1601.png["The anonymity set of Alice and Bob constitutes their neighbors"]
 
