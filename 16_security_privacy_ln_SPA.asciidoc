@@ -39,7 +39,7 @@ Este nodo sería responsable de enrutar una gran parte de los pagos hacia y desd
 ¿Qué pasa si varios nodos están bajo control adversario?
 Si dos nodos en connivencia se encuentran en la misma ruta de pago, entenderán que están reenviando HTLC que pertenecen al mismo pago porque los HTLC tienen el mismo hash de pago.
 
-[NOTE]
+[NOTA]
 ====
 Los Pagos Multiparte (ver <<mpp>>) permiten a los usuarios ofuscar sus montos de pago debido a sus tamaños de división no uniformes.
 ====
@@ -51,19 +51,19 @@ Confidencialidad:: La información solo llega a los destinatarios previstos.
 Integridad:: La información no se altera en tránsito.
 Disponibilidad:: El sistema funciona la mayor parte del tiempo.
 
-The important properties of the Lightning Network are mostly centered around confidentiality and availability. Some of the most important properties to protect include:
+Las propiedades importantes de Lightning Network se centran principalmente en la confidencialidad y la disponibilidad. Algunas de las propiedades más importantes para la protección incluyen:
 
-* Only the sender and the receiver know the payment amount.
-* No one can link senders and receivers.
-* An honest user cannot be blocked from sending and receiving payments.
+* Solo el remitente y el destinatario conocen el monto del pago.
+* Nadie puede vincular emisores y receptores.
+* Un usuario honesto no puede ser bloqueado para enviar y recibir pagos.
 
-For each privacy goal and security model, there is a certain probability that an attacker succeeds.
-This probability depends on various factors, such as the size and structure of the network.
-Other things being equal, it is generally easier to successfully attack a small network rather than a large one.
-Similarly, the more centralized the network is, the more capable an attacker can be if "central" nodes are under their control.
-Of course, the term centralization must be defined precisely to build security models around it, and there are many possible definitions of how centralized a network is.
-Finally, as a payment network, the Lightning Network depends on economic stimuli.
-The size and structure of fees affect the routing algorithm, and therefore can either aid the attacker by forwarding most payments through their nodes or prevent this from happening.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc1")))
+Para cada objetivo de privacidad y modelo de seguridad, existe una cierta probabilidad de que un atacante tenga éxito.
+Esta probabilidad depende de varios factores, como el tamaño y la estructura de la red.
+En igualdad de condiciones, generalmente es más fácil atacar con éxito una red pequeña que una grande.
+Del mismo modo, cuanto más centralizada es la red, más capaz puede ser un atacante si los nodos "centrales" están bajo su control.
+Por supuesto, el término centralización debe definirse con precisión para construir modelos de seguridad a su alrededor, y hay muchas definiciones posibles de qué tan centralizada es una red.
+Finalmente, como red de pago, Lightning Network depende de estímulos económicos.
+El tamaño y la estructura de las tarifas afectan el algoritmo de enrutamiento y, por lo tanto, pueden ayudar al atacante reenviando la mayoría de los pagos a través de sus nodos o evitar que esto suceda.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc1")))
 
 
 === Anonymity Set
