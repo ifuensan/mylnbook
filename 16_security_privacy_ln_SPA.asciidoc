@@ -176,136 +176,133 @@ En las siguientes secciones, consideraremos dos tipos de adversarios: el adversa
 Un adversario fuera de la ruta intenta evaluar al remitente y al receptor de un pago sin participar en el proceso de enrutamiento del pago.
 Un adversario en camino puede aprovechar cualquier información que pueda obtener enrutando el pago de intereses.
 
-((("off-path adversary")))Primero, considere al _adversario fuera del camino_. En el primer paso de este escenario de ataque, un potente adversario fuera de ruta deduce los saldos individuales en cada canal de pago a través de un sondeo (descrito en una sección posterior) y forma una instantánea de la red en el momento __t~1~__. Para simplificar, hagamos que __t~1~__ sea igual a 12:05. Luego sondea la red nuevamente en algún momento posterior en el tiempo __t~2~__, que haremos 12:10. Luego, el atacante compararía las instantáneas a las 12:10 y las 12:05 y usaría las diferencias entre las dos instantáneas para inferir información sobre los pagos que se realizaron al observar las rutas que han cambiado. En el caso más simple, si solo se produjera un pago entre las 12:10 y las 12:05, el adversario observaría un único camino donde los saldos han cambiado en las mismas cantidades. Así, el adversario aprende casi todo sobre este pago: el remitente, el destinatario y el monto. Si varias rutas de pago se superponen, el adversario debe aplicar heurísticas para identificar dicha superposición y separar los pagos. 
+((("adversario fuera de la ruta")))Primero, considere al _adversario fuera de la ruta. En el primer paso de este escenario de ataque, un potente adversario fuera de ruta deduce los saldos individuales en cada canal de pago a través de un sondeo (descrito en una sección posterior) y forma una instantánea de la red en el momento __t~1~__. Para simplificar, hagamos que __t~1~__ sea igual a 12:05. Luego sondea la red nuevamente en algún momento posterior en el tiempo __t~2~__, que haremos 12:10. Luego, el atacante compararía las instantáneas a las 12:10 y las 12:05 y usaría las diferencias entre las dos instantáneas para inferir información sobre los pagos que se realizaron al observar las rutas que han cambiado. En el caso más simple, si solo se produjera un pago entre las 12:10 y las 12:05, el adversario observaría un único camino donde los saldos han cambiado en las mismas cantidades. Así, el adversario aprende casi todo sobre este pago: el remitente, el destinatario y el monto. Si varias rutas de pago se superponen, el adversario debe aplicar heurísticas para identificar dicha superposición y separar los pagos. 
 
-((("on-path adversary")))Now, we turn our attention to an _on-path adversary_.
-Such an adversary might seem convoluted.
-However, in June 2020, researchers noted that the single most central node https://arxiv.org/pdf/2006.12143.pdf[observed close to 50% of all LN payments], while the four most central nodes https://arxiv.org/pdf/1909.06890.pdf[observed an average of 72% payments].
-These findings emphasize the relevance of the on-path attacker model.
-Even though intermediaries in a payment path only learn their successor and predecessor, there are several leakages that a malicious or honest-but-curious intermediary might use to infer the sender and the receiver.
+((("adversario en la ruta"))) Ahora, dirigimos nuestra atención a un _adversario en la ruta.
+Tal adversario puede parecer complicado.
+Sin embargo, en junio de 2020, los investigadores notaron que el único nodo más central https://arxiv.org/pdf/2006.12143.pdf[observó cerca del 50% de todos los pagos de LN], mientras que los cuatro nodos más centrales. https://arxiv.org/pdf/1909.06890.pdf[observó un promedio de 72% de pagos].
 
-The on-path adversary can observe the amount of any routed payment as well as timelock deltas (see <<onion_routing>>).
-Hence, the adversary can exclude any nodes from the sender's or the receiver's anonymity set with capacities lower than the routed amount.
-Therefore, we observe a trade-off between privacy and payment amounts.
-Typically, the larger the payment amount is, the smaller the anonymity sets are.
-We note that this leakage could be minimized with multipart payments or with large capacity payment channels.
-Similarly, payment channels with small timelock deltas could be excluded from a payment path.
-More precisely, a payment channel cannot pertain to a payment if the remaining time the payment might be locked for is larger than what the forwarding node would be willing to accept.
-This leakage could be evicted by adhering to the so-called shadow routes.
+Estos hallazgos enfatizan la relevancia del modelo de atacante en ruta.
+Aunque los intermediarios en una ruta de pago solo conocen a su sucesor y predecesor, existen varias filtraciones que un intermediario malicioso u honesto pero curioso, podría usar para inferir quién es el remitente y el destinatario.
 
-One of the most subtle and yet powerful leakages an on-path adversary can foster is the timing analysis.
-An on-path adversary can keep a log for every routed payment, along with the amount of time it takes for a node to respond to an HTLC request.
-Before starting the attack, the attacker learns every node's latency characteristics in the Lightning Network by sending them requests.
-Naturally, this can aid in establishing the adversary's precise position in the payment path.
-Even more, as it was recently shown, an attacker can successfully determine the sender and the receiver of a payment from a set of possible senders and receivers using time-based estimators.
+El adversario en ruta puede observar el monto de cualquier pago enrutado, así como los deltas de bloqueo de tiempo (consulte <<onion_routing>>).
+Por lo tanto, el adversario puede excluir cualquier nodo del conjunto de anonimato del remitente o del receptor con capacidades inferiores a la cantidad enrutada.
+Por lo tanto, observamos una compensación entre privacidad y montos de pago.
+Por lo general, cuanto mayor es el monto del pago, más pequeños son los conjuntos de anonimato.
+Observamos que esta fuga podría minimizarse con pagos multiparte o con canales de pago de gran capacidad.
+De manera similar, los canales de pago con pequeños deltas de bloqueo de tiempo podrían excluirse de una ruta de pago.
+Más precisamente, un canal de pago no puede pertenecer a un pago si el tiempo restante durante el cual el pago podría estar bloqueado es mayor que el que el nodo de reenvío estaría dispuesto a aceptar.
+Esta fuga podría ser desalojada adhiriéndose a las llamadas rutas sombra.
+
+Una de las filtraciones más sutiles y poderosas que un adversario en ruta puede fomentar es el análisis de tiempo.
+Un adversario en ruta puede mantener un registro de cada pago enrutado, junto con la cantidad de tiempo que tarda un nodo en responder a una solicitud HTLC.
+Antes de comenzar el ataque, el atacante aprende las características de latencia de cada nodo en Lightning Network enviándoles solicitudes.
+Naturalmente, esto puede ayudar a establecer la posición precisa del adversario en la ruta de pago.
+Más aún, como se demostró recientemente, un atacante puede determinar con éxito el remitente y el destinatario de un pago a partir de un conjunto de posibles remitentes y destinatarios utilizando estimadores basados ​​en el tiempo.
 
 Finally, it's important to recognize that unknown or unstudied leakages probably exist that could aid de-anonymizing attempts. For instance, because different Lightning wallets apply different routing algorithms, even knowing the applied routing algorithm could help exclude certain nodes from being a sender and/or receiver of a payment.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc4")))
 
+Finalmente, es importante reconocer que probablemente existan filtraciones desconocidas o no estudiadas que podrían ayudar a los intentos de anonimización. Por ejemplo, debido a que diferentes carteras Lightning aplican diferentes algoritmos de enrutamiento, incluso sabiendo que el algoritmo de enrutamiento aplicado podría ayudar a excluir ciertos nodos de ser un remitente y/o receptor de un pago.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc4 ")))
 
-==== Revealing Channel Balances (Probing)
+==== Revelación de saldos de canales (Sondeo o "Probing")
+//TO DO Esto hay que revisarlo
+((("violación de la privacidad","revelación de saldos de canales", id="ix_16_security_privacy_ln-asciidoc5", range="startofrange")))((("channel balances, revealing", id="ix_16_security_privacy_ln-asciidoc6", range="startofrange")))((("channel probing", id="ix_16_security_privacy_ln-asciidoc7", range="startofrange")))((("probing attack", id="ix_16_security_privacy_ln-asciidoc8", range="startofrange")))Se supone que los saldos de los canales Lightning están ocultos por razones de privacidad y eficiencia.
+Un nodo Lightning solo conoce los saldos de sus canales adyacentes.
+El protocolo no proporciona una forma estándar de consultar el saldo de un canal remoto.
 
-((("violación de la privacidad","revealing channel balances", id="ix_16_security_privacy_ln-asciidoc5", range="startofrange")))((("channel balances, revealing", id="ix_16_security_privacy_ln-asciidoc6", range="startofrange")))((("channel probing", id="ix_16_security_privacy_ln-asciidoc7", range="startofrange")))((("probing attack", id="ix_16_security_privacy_ln-asciidoc8", range="startofrange")))The balances of Lightning channels are supposed to be hidden for privacy and efficiency reasons.
-A Lightning node only knows the balances of its adjacent channels.
-The protocol provides no standard way to query the balance of a remote channel.
+Sin embargo, un atacante puede revelar el saldo de un canal remoto en un _ataque de sondeo o "probing attack"_.
+En seguridad de la información, el sondeo se refiere a la técnica de enviar solicitudes a un sistema objetivo y sacar conclusiones sobre su estado privado en función de las respuestas recibidas.
 
-However, an attacker can reveal the balance of a remote channel in a _probing attack_.
-In information security, probing refers to the technique of sending requests to a targeted system and making conclusions about its private state based on the received responses.
+Los canales de rayos son propensos a sondear. 
+Recuerde que un pago Lightning estándar comienza cuando el receptor crea un secreto de pago aleatorio y envía su hash al remitente. 
+Tenga en cuenta que para los nodos intermediarios, todos los hashes parecen aleatorios. 
+No hay forma de saber si un hash corresponde a un secreto real o si se generó aleatoriamente.
 
-Lightning channels are prone to probing.
-Recall that a standard Lightning payment starts with the receiver creating a random payment secret and sending its hash to the sender.
-Note that for the intermediary nodes, all hashes look random.
-There is no way to tell whether a hash corresponds to a real secret or was generated randomly.
+El ataque de sondeo procede de la siguiente manera.
+Digamos que el atacante Mallory quiere revelar el saldo de Alice de un canal público entre Alice y Bob. 
+Supongamos que la capacidad total de ese canal es de 1 millón de satoshis. 
+El saldo de Alice puede oscilar entre cero y 1 millón de satoshis (para ser precisos, la estimación es un poco más ajustada debido a la reserva de canales, pero no la tomamos en cuenta aquí por simplicidad).
+Mallory abre un canal con Alice con 1 millón de satoshis y envía 500 000 satoshis a Bob a través de Alice usando un _número aleatorio_ como hash de pago. 
+Por supuesto, este número no corresponde a ningún secreto de pago conocido. Por lo tanto, el pago fallará. 
+La pregunta es: ¿cómo fallará exactamente? 
 
-The probing attack proceeds as follows.
-Say the attacker Mallory wants to reveal Alice's balance of a public channel between Alice and Bob.
-Suppose the total capacity of that channel is 1 million satoshis.
-Alice's balance could be anything from zero to 1 million satoshis (to be precise, the estimate is a bit tighter due to channel reserve, but we don't account for it here for simplicity).
-Mallory opens a channel with Alice with 1 million satoshis and sends 500,000 satoshis to Bob via Alice using a _random number_ as the payment hash.
-Of course, this number does not correspond to any known payment secret.
-Therefore, the payment will fail.
-The question is: how exactly will it fail?
+Existen dos escenarios.
+Si Alice posee mas de 500.000 satoshis en su lado del canal con Bob, ella envia el pago.
 
-There are two scenarios.
-If Alice has more than 500,000 satoshis on her side of the channel to Bob, she forwards the payment.
-Bob decrypts the payment onion and realizes that the payment is intended for him.
-He looks up his local store of payment secrets and searches for the preimage that corresponds to the payment hash, but does not find one.
-Following the protocol, Bob returns the "unknown payment hash" error to Alice, who relays it back to Mallory.
-As a result, Mallory knows that the payment _could have succeeded_ if the payment hash was real.
-Therefore, Mallory can update her estimation of Alice's balance from "between zero and 1 million" to "between 500,000 and 1 million."
-Another scenario happens if Alice's balance is lower than 500,000 satoshis.
-In that case, Alice is unable to forward the payment and returns the "insufficient balance" error to Mallory.
-Mallory updates her estimation from "between zero and 1 million" to "between zero and 500,000."
+Bob descifra la cebolla de pago y se da cuenta de que el pago está destinado a él.
+Busca en su tienda local de secretos de pago y busca la preimagen que corresponde al hash de pago, pero no la encuentra.
+Siguiendo el protocolo, Bob devuelve el error de "hash de pago desconocido" a Alice, quien se lo transmite a Mallory.
+Como resultado, Mallory sabe que el pago _podría haber tenido éxito_ si el hash del pago fuera real.
+Por lo tanto, Mallory puede actualizar su estimación del saldo de Alice de "entre cero y 1 millón" a "entre 500.000 y 1 millón".
+Otro escenario ocurre si el saldo de Alice es inferior a 500.000 satoshis.
+En ese caso, Alice no puede envíar el pago y devuelve el error de "saldo insuficiente" a Mallory.
+Mallory actualiza su estimación de "entre cero y 1 millón" a "entre cero y 500.000".
 
-Note that in any case, Mallory's estimation becomes twice as precise after just one probing!
-She can continue probing, choosing the next probing amount such that it divides the current estimation interval in half.
-((("binary search")))This well-known search technique is called _binary search_.
-With binary search, the number of probes is _logarithmic_ in the desired precision.
-For example, to obtain Alice's balance in a channel of 1 million satoshis up to a single satoshi, Mallory would only have to perform log~2~ (1,000,000) &asymp; 20 probings.
-If one probing takes 3 seconds, one channel can be precisely probed in only about a minute!
+Tenga en cuenta que, en cualquier caso, la estimación de Mallory se vuelve el doble de precisa después de un solo sondeo.
+Puede continuar sondeando, eligiendo la siguiente cantidad de sondeo de modo que divida el intervalo de estimación actual por la mitad.
+((("búsqueda binaria"))) Esta conocida técnica de búsqueda se llama _búsqueda binaria_.
+Con la búsqueda binaria, el número de sondas es _logarítmico_ con la precisión deseada.
+Por ejemplo, para obtener el saldo de Alice en un canal de 1 millón de satoshis hasta un solo satoshi, Mallory solo tendría que realizar log~2~ (1.000.000) ≈ 20 sondeos.
+Si un sondeo tarda 3 segundos, ¡un canal se puede sondear con precisión en solo un minuto!
 
-Channel probing can be made even more efficient.
-In its simplest variant, Mallory directly connects to the channel she wants to probe.
-Is it possible to probe a channel without opening a channel to one of its endpoints?
-Imagine Mallory now wants to probe a channel between Bob and Charlie but doesn't want to open another channel, which requires paying on-chain fees and waiting for confirmations of the funding transactions.
-Instead, Mallory reuses her existing channel to Alice and sends a probe along the route Mallory -> Alice -> Bob -> Charlie.
-Mallory can interpret the "unknown payment hash" error in the same way as before: the probe has reached the destination; therefore, all channels along the route have sufficient balances to forward it.
-But what if Mallory receives the "insufficient balance" error?
-Does it mean that the balance is insufficient between Alice and Bob or between Bob and Charlie?
+El sondeo de canales se puede hacer aún más eficiente.
+En su variante más simple, Mallory se conecta directamente al canal que quiere sondear.
+¿Es posible sondear un canal sin abrir un canal a uno de sus puntos finales?
+Imagine que Mallory ahora quiere probar un canal entre Bob y Charlie, pero no quiere abrir otro canal, lo que requiere pagar tarifas en cadena y esperar confirmaciones de las transacciones de financiación.
+En cambio, Mallory reutiliza su canal existente a Alice y envía una sonda a lo largo de la ruta Mallory -> Alice -> Bob -> Charlie.
+Mallory puede interpretar el error "hash de pago desconocido" de la misma manera que antes: la sonda ha llegado al destino; por lo tanto, todos los canales a lo largo de la ruta tienen saldos suficientes para reenviarlo.
+Pero, ¿y si Mallory recibe el error de "saldo insuficiente"?
+¿Significa que el equilibrio es insuficiente entre Alice y Bob o entre Bob y Charlie?
 
-In the current Lightning protocol, error messages report not only _which_ error occurred but also _where_ it happened.
-So, with more careful error handling, Mallory now knows which channel failed.
-If this is the target channel, she updates her estimates; if not, she chooses another route to the target channel.
-She even gets _additional_ information about the balances of intermediary channels, on top of that of the target channel.
+En el protocolo Lightning actual, los mensajes de error informan no solo _cuál_ error ocurrió sino también _dónde_ sucedió.
+Entonces, con un manejo de errores más cuidadoso, Mallory ahora sabe qué canal falló.
+Si este es el canal objetivo, actualiza sus estimaciones; si no, elige otra ruta hacia el canal de destino.
+Incluso obtiene información _adicional_ sobre los saldos de los canales intermediarios, además de la del canal de destino.
 
-The probing attack can be further used to link senders and receivers, as described in the previous section.
+El ataque de sondeo se puede utilizar además para vincular remitentes y receptores, como se describe en la sección anterior.
 
-At this point, you may ask: why does the Lightning Network do such a poor job at protecting its users' private data?
-Wouldn't it be better to not reveal to the sender why and where the payment has failed?
-Indeed, this could be a potential countermeasure, but it has significant drawbacks.
-Lightning has to strike a careful balance between privacy and efficiency.
-Remember that regular nodes don't know balance distributions in remote channels.
-Therefore, payments can (and often do) fail because of insufficient balance at an intermediary hop.
-Error messages allow the sender to exclude the failing channel from consideration when constructing another route.
-One popular Lightning wallet even performs probing internally to check whether a constructed route can really handle a payment.
+En este punto, puede preguntarse: ¿por qué Lightning Network hace un trabajo tan pobre en la protección de los datos privados de sus usuarios?
+¿No sería mejor no revelar al remitente por qué y dónde ha fallado el pago?
+De hecho, esto podría ser una contramedida potencial, pero tiene importantes inconvenientes.
+Lightning tiene que lograr un cuidadoso equilibrio entre privacidad y eficiencia.
+Recuerde que los nodos regulares no conocen las distribuciones de saldos en los canales remotos.
+Por lo tanto, los pagos pueden fallar (y a menudo lo hacen) debido a un saldo insuficiente en un salto intermediario.
+Los mensajes de error permiten al remitente excluir el canal que falla al construir otra ruta.
+Una billetera Lightning popular incluso realiza un sondeo interno para verificar si una ruta construida realmente puede manejar un pago.
 
-There are other potential countermeasures against channel probing.
-First, it is hard for an attacker to target unannounced channels.
-Second, nodes that implement just-in-time (JIT) routing may be less prone to the attack.
-Finally, as multipart payments make the problem of insufficient capacity less severe, the protocol developers may consider hiding some of the error details without harming efficiency.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc8")))(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc7")))(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc6")))(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc5")))
+Existen otras contramedidas potenciales contra el sondeo de canales.
+Primero, es difícil para un atacante apuntar a canales no anunciados.
+En segundo lugar, los nodos que implementan enrutamiento justo a tiempo (JIT) pueden ser menos propensos al ataque.
+Finalmente, dado que los pagos de varias partes hacen que el problema de la capacidad insuficiente sea menos grave, los desarrolladores del protocolo pueden considerar ocultar algunos de los detalles del error sin dañar la eficiencia.
+(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc8")))(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc7")))(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc6")))(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc5")))
 
-[[denial_of_service]]
-==== Denial of Service
+[[denegacion_de_servicio]]
+==== Denegación de Servicio
 
-((("violación de la privacidad","denial-of-service attacks", id="ix_16_security_privacy_ln-asciidoc9", range="startofrange")))((("denial-of-service (DoS) attacks", id="ix_16_security_privacy_ln-asciidoc10", range="startofrange")))When resources are made publicly available, there is a risk that attackers may attempt to make that resource unavailable by executing a denial-of-service (DoS) attack.
-Generally, this is achieved by the attacker bombarding a resource with requests, which are indistinguishable from legitimate queries.
-The attacks seldom result in the target suffering financial loss, aside from the opportunity cost of their service being down, and are merely intended to aggrieve the target.
+((("violación de la privacidad","ataques de denegación de servicio", id="ix_16_security_privacy_ln-asciidoc9", range="startofrange")))((("ataques denegación-de-servicio (DoS)", id="ix_16_security_privacy_ln-asciidoc10", range="startofrange")))Cuando los recursos se ponen a disposición del público, existe el riesgo de que los atacantes intenten hacer que ese recurso no esté disponible mediante la ejecución de un ataque de denegación de servicio o "denial of service" (DoS).
+Generalmente, esto se logra cuando el atacante bombardea un recurso con solicitudes, que son indistinguibles de las consultas legítimas.
+Los ataques rara vez dan como resultado que el objetivo sufra pérdidas financieras, aparte del costo de oportunidad de la caída de su servicio, y simplemente tienen la intención de agraviar al objetivo.
 
-Typical mitigations for DoS attacks require authentication for requests to separate legitimate users from malicious ones. These mitigations incur a trivial cost to regular users but will act as a sufficient deterrent to an attacker launching requests at scale.
-Anti-denial-of-service measures can be seen everywhere on the internet—websites apply rate limits to ensure that no one user can consume all of their server's attention, film review sites require login authentication to keep angry r/prequelmemes (Reddit group) members at bay, and data services sell API keys to limit the number of queries.
+Las mitigaciones típicas de los ataques DoS requieren la autenticación de las solicitudes para separar a los usuarios legítimos de los malintencionados. Estas mitigaciones incurren en un costo trivial para los usuarios regulares, pero actuarán como un impedimento suficiente para que un atacante inicie solicitudes a gran escala.
+Las medidas contra la denegación de servicio se pueden ver en todas partes en Internet: los sitios web aplican límites de velocidad para garantizar que ningún usuario pueda consumir toda la atención de su servidor, los sitios de reseñas de películas requieren autenticación de inicio de sesión para mantenerse enojado r/prequelmemes (grupo Reddit) miembros a raya, y los servicios de datos venden claves API para limitar el número de consultas.
 
-===== DoS in bitcoin
+===== DoS en Bitcoin
 
-((("Bitcoin (system)","DoS attacks")))((("denial-of-service (DoS) attacks","DoS in Bitcoin")))In Bitcoin, the bandwidth that nodes use to relay transactions and the space that they avail to the network in the form of their mempool are publicly available resources.
-Any node on the network can consume bandwidth and mempool space by sending a valid transaction.
-If this transaction is mined in a valid block, they will pay transaction fees, which adds a cost to using these shared network resources.
+((("Bitcoin (sistema)","Ataques DoS")))((("ataques denegación-de-servicio (DoS)","DoS en Bitcoin")))En Bitcoin, el ancho de banda que utilizan los nodos para transmitir transacciones y el espacio que aprovechan para la red en forma de su mempool son recursos disponibles públicamente.
+Cualquier nodo de la red puede consumir ancho de banda y espacio de mempool enviando una transacción válida.
+Si esta transacción se extrae en un bloque válido, pagarán tarifas de transacción, lo que agrega un costo al uso de estos recursos de red compartidos.
 
-In the past, the Bitcoin network faced an attempted DoS attack where attackers spammed the network with low-fee transactions.
-Many of these transactions were not selected by miners due to their low transaction fees, so the attackers could consume network resources without paying the fees.
-To address this issue, a minimum transaction relay fee that set a threshold fee that nodes require to propagate transactions was set.
-This measure largely ensured that the transactions that consume network resources will eventually pay their chain fees.
-The minimum relay fee is acceptable to regular users but would hurt attackers financially if they tried to spam the network.
-While some transactions may not make it into valid blocks within high-fee environments, these measures have largely been effective at deterring this type of spam.
+En el pasado, la red Bitcoin se enfrentó a un intento de ataque DoS en el que los atacantes enviaron spam a la red con transacciones de bajo costo.
+Muchas de estas transacciones no fueron seleccionadas por los mineros debido a sus bajas tarifas de transacción, por lo que los atacantes podían consumir recursos de la red sin pagar las tarifas.
+Para abordar este problema, se estableció una tarifa mínima de retransmisión de transacciones que establece una tarifa de umbral que los nodos requieren para propagar transacciones.
+Esta medida aseguró en gran medida que las transacciones que consumen recursos de la red finalmente pagarán sus tarifas de cadena.
+La tarifa mínima de retransmisión es aceptable para los usuarios habituales, pero perjudicaría financieramente a los atacantes si intentaran enviar spam a la red.
+Si bien es posible que algunas transacciones no se conviertan en bloques válidos en entornos de tarifas altas, estas medidas han sido en gran medida efectivas para disuadir este tipo de spam.
 
-===== DoS in Lightning
+===== DoS en Lightning
 
-((("denial-of-service (DoS) attacks","DoS in Lightning")))Similarly to Bitcoin, the Lightning Network charges fees for the use of its public resources, but in this case, the resources are public channels, and the fees come in the form of routing fees.
-The ability to route payments through nodes in exchange for fees provides the network with a large scalability benefit—nodes that are not directly connected can still transact—but it comes at the cost of exposing a public resource that must be protected against DoS attacks.
-
-When a Lightning node forwards a payment on your behalf, it uses data and payment bandwidth to update its commitment transaction, and the amount of the payment is reserved in their channel balance until it is settled or failed.
-In successful payments, this is acceptable because the node is eventually paid out its fees.
-Failed payments do not incur fees in the current protocol.
-This allows nodes to costlessly route failed payments through any channels.
-This is great for legitimate users, who wouldn't like to pay for failed attempts, but also allows attackers to costlessly consume nodes' resources—much like the low-fee transactions on Bitcoin that never end up paying miner fees.
+((("ataques denegación-de-servicio (DoS)","DoS en Lightning")))De manera similar a Bitcoin, Lightning Network cobra tarifas por el uso de sus recursos públicos, pero en este caso, los recursos son canales públicos y las tarifas vienen en forma de tarifas de enrutamiento. La capacidad de enrutar pagos a través de nodos a cambio de tarifas brinda a la red un gran beneficio de escalabilidad (los nodos que no están conectados directamente aún pueden realizar transacciones), pero tiene el costo de exponer un recurso público que debe protegerse contra ataques DoS. 
+Cuando un nodo Lightning reenvía un pago en su nombre, utiliza datos y ancho de banda de pago para actualizar su transacción de compromiso, y el monto del pago se reserva en el saldo de su canal hasta que se liquide o falle. En pagos exitosos, esto es aceptable porque el nodo finalmente paga sus tarifas. Los pagos fallidos no incurren en cargos en el protocolo actual. Esto permite que los nodos enruten sin costo los pagos fallidos a través de cualquier canal. Esto es excelente para usuarios legítimos, a quienes no les gustaría pagar por intentos fallidos, pero también permite a los atacantes consumir los recursos de los nodos sin costo, al igual que las transacciones de bajo costo en Bitcoin que nunca terminan pagando las tarifas de los mineros. 
 
 At the time of writing, a discussion is https://lists.linuxfoundation.org/pipermail/lightning-dev/2020-June/002734.html[ongoing] on the lightning-dev mailing list as to how best address this issue.
 
