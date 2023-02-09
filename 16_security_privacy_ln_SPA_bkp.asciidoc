@@ -19,7 +19,7 @@ A diferencia de las soluciones de escalado triviales como los bancos de custodia
 
 Primero, un investigador de privacidad definiría un _modelo de seguridad_ que especifica lo que un adversario es capaz de hacer y pretende lograr.
 Luego, describirían las propiedades relevantes del sistema y verificarían si cumple con los requisitos.
-
+////
 === Proceso para evaluar la privacidad
 
 ((("seguridad y privacidad","proceso para evaluar la privacidad")))((("security assumptions")))
@@ -112,7 +112,7 @@ Idealmente, el conjunto de anonimato consiste en todos los usuarios de la red.
 Esto asegura que el atacante no tiene información alguna.
 Sin embargo, la red real filtra información que permite a un atacante restringir la búsqueda.
 Cuanto más pequeño sea el conjunto de anonimato, mayor será la posibilidad de una desanonimización exitosa.
-////
+
 [role="pagebreak-before less_space"]
 === Diferencias entre Lightning Network y Bitcoin en términos de privacidad
 
