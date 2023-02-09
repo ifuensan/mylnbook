@@ -5,11 +5,11 @@
 En este capítulo, analizamos algunos de los problemas más importantes relacionados con la seguridad y la privacidad de Lightning Network. Primero, consideraremos la privacidad, lo que significa, cómo evaluarla y algunas cosas que puede hacer para proteger su propia privacidad mientras usa Lightning Network. Luego exploraremos algunos ataques comunes y técnicas de mitigación.
 
 
-=== ¿Por qué la Privacidad es importante?
+=== ¿Por que la Privacidad es importante?
 
 ((("seguridad y privacidad","importancia de la privacidad")))
 La propuesta de valor clave de la criptomoneda es que estamos ante dinero resistente a la censura. Bitcoin ofrece a los participantes la posibilidad de almacenar y transferir su riqueza sin interferencias de los gobiernos, bancos o corporaciones. Lightning Network continúa con esta misión.
-////
+
 
 //The key value proposition of cryptocurrency is censorship resistant money. Bitcoin offers participants the possibility of storing and transferring their wealth without interference by governments, banks, or corporations. The Lightning Network continues this mission.
 
@@ -116,7 +116,7 @@ Idealmente, el conjunto de anonimato consiste en todos los usuarios de la red.
 Esto asegura que el atacante no tiene información alguna.
 Sin embargo, la red real filtra información que permite a un atacante restringir la búsqueda.
 Cuanto más pequeño sea el conjunto de anonimato, mayor será la posibilidad de una desanonimización exitosa.
-
+////
 [role="pagebreak-before less_space"]
 === Diferencias entre Lightning Network y Bitcoin en términos de privacidad
 
