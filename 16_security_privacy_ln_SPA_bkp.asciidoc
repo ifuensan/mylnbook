@@ -112,7 +112,7 @@ Idealmente, el conjunto de anonimato consiste en todos los usuarios de la red.
 Esto asegura que el atacante no tiene información alguna.
 Sin embargo, la red real filtra información que permite a un atacante restringir la búsqueda.
 Cuanto más pequeño sea el conjunto de anonimato, mayor será la posibilidad de una desanonimización exitosa.
-
+////
 [role="pagebreak-before less_space"]
 === Diferencias entre Lightning Network y Bitcoin en términos de privacidad
 
@@ -135,7 +135,7 @@ Un usuario Lightning, al enviar un pago, tiene a sus vecinos en su conjunto de a
 Específicamente, un nodo de enrutamiento solo conoce los nodos inmediatamente anteriores y posteriores.
 El nodo de enrutamiento no sabe si sus vecinos inmediatos en la ruta de pago son el remitente o el receptor final.
 Por lo tanto, el conjunto de anonimato de un nodo en Lightning es aproximadamente igual al de sus vecinos (ver <<conjunto_de_anonimato>>).
-////
+
 [[conjunto_de_anonimato]]
 .El conjunto de anonimato de Alice y Bob constituye sus vecinos
 image::images/mtln_1601.png["El conjunto de anonimato de Alice y Bob constituye sus vecinos"]
