@@ -1,7 +1,6 @@
 [[seguridad_y_privacidad]]
 == Seguridad y Privacidad de pass:[<span class="keep-together">Lightning Network</span>]
 
-((("seguridad y privacidad", id="ix_16_security_privacy_ln-asciidoc0", range="startofrange")))
 En este capítulo, analizamos algunos de los problemas más importantes relacionados con la seguridad y la privacidad de Lightning Network. Primero, consideraremos la privacidad, lo que significa, cómo evaluarla y algunas cosas que puede hacer para proteger su propia privacidad mientras usa Lightning Network. Luego exploraremos algunos ataques comunes y técnicas de mitigación.
 
 ////
