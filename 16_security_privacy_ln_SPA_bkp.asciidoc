@@ -70,7 +70,7 @@ Por supuesto, el término centralización debe definirse con precisión para con
 Finalmente, como red de pago, Lightning Network depende de estímulos económicos.
 El tamaño y la estructura de las tarifas afectan el algoritmo de enrutamiento y, por lo tanto, pueden ayudar al atacante reenviando la mayoría de los pagos a través de sus nodos o evitar que esto suceda.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc1")))
 
-////
+
 === Conjunto de anonimato 
 //Anonymity Set 
 
@@ -99,6 +99,8 @@ el conjunto de anonimato se reduce al pase de número: de empleados y visitantes
 Finalmente, puedes ver el número de matrícula del coche que utilizó para llegar al lugar.
 Si eres un observador casual, esto no te da mucho.
 Sin embargo, si tú eres un funcionario de la ciudad y tienes acceso a la base de datos que relaciona los números de matrícula con los nombres, puede reducir el anonimato establecido a solo unas pocas personas: el propietario del coche y cualquier amigo cercano y pariente que pueda haber tomado prestado dicho coche.
+
+////
 
 Este ejemplo ilustra algunos puntos importantes.
 Primero, cada bit de información puede acercar al adversario a su objetivo.
@@ -621,3 +623,4 @@ In this chapter, we used many references from ongoing research on Lightning secu
 ===== Routing considerations
 
 * Marty Bent, interview with Joost Jager, _Tales from the Crypt_, podcast audio, October 2, 2020, https://anchor.fm/tales-from-the-crypt/episodes/197-Joost-Jager-ekghn6[].(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc0")))
+////
