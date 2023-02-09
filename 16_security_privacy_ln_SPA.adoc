@@ -199,7 +199,7 @@ Una de las filtraciones más sutiles y poderosas que un adversario en ruta puede
 Un adversario en ruta puede mantener un registro de cada pago enrutado, junto con la cantidad de tiempo que tarda un nodo en responder a una solicitud HTLC.
 Antes de comenzar el ataque, el atacante aprende las características de latencia de cada nodo en Lightning Network enviándoles solicitudes.
 Naturalmente, esto puede ayudar a establecer la posición precisa del adversario en la ruta de pago.
-Más aún, como se demostró recientemente, un atacante puede determinar con éxito el remitente y el destinatario de un pago a partir de un conjunto de posibles remitentes y destinatarios utilizando estimadores basados ​​en el tiempo.
+Más aún, como se demostró recientemente, un atacante puede determinar con éxito el remitente y el destinatario de un pago a partir de un conjunto de posibles remitentes y destinatarios utilizando estimadores basados en el tiempo.
 
 Finally, it's important to recognize that unknown or unstudied leakages probably exist that could aid de-anonymizing attempts. For instance, because different Lightning wallets apply different routing algorithms, even knowing the applied routing algorithm could help exclude certain nodes from being a sender and/or receiver of a payment.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc4")))
 
@@ -243,7 +243,7 @@ Tenga en cuenta que, en cualquier caso, la estimación de Mallory se vuelve el d
 Puede continuar sondeando, eligiendo la siguiente cantidad de sondeo de modo que divida el intervalo de estimación actual por la mitad.
 ((("búsqueda binaria"))) Esta conocida técnica de búsqueda se llama _búsqueda binaria_.
 Con la búsqueda binaria, el número de sondas es _logarítmico_ con la precisión deseada.
-Por ejemplo, para obtener el saldo de Alice en un canal de 1 millón de satoshis hasta un solo satoshi, Mallory solo tendría que realizar log~2~ (1.000.000) ≈ 20 sondeos.
+Por ejemplo, para obtener el saldo de Alice en un canal de 1 millón de satoshis hasta un solo satoshi, Mallory solo tendría que realizar log~2~ (1.000.000) =  20 sondeos.
 Si un sondeo tarda 3 segundos, ¡un canal se puede sondear con precisión en solo un minuto!
 
 El sondeo de canales se puede hacer aún más eficiente.
@@ -416,7 +416,7 @@ La posible anonimización de las entidades de Bitcoin ilustra lo importante que 
 Por lo tanto, muchas de sus propiedades (privacidad, robustez, conectividad, eficiencia de enrutamiento) están influenciadas y caracterizadas por su naturaleza de red.
 
 En esta sección, discutimos y analizamos Lightning Network desde el punto de vista de la ciencia de redes.
-Estamos particularmente interesados ​​en comprender el gráfico de canal LN, su robustez, conectividad y otras características importantes.
+Estamos particularmente interesados en comprender el gráfico de canal LN, su robustez, conectividad y otras características importantes.
 
 ==== ¿Cómo se ve el gráfico de rayos en la realidad?
 ((("Lightning graph","reality versus theoretical appearance of", id="ix_16_security_privacy_ln-asciidoc16", range="startofrange")))Uno podría haber esperado que Lightning Network sea un gráfico aleatorio, donde los bordes se forman aleatoriamente entre los nodos.
@@ -439,9 +439,9 @@ Basado en instantáneas de canales anunciados públicamente, la distribución de
 En dicho gráfico, la gran mayoría de los nodos tienen muy pocas conexiones con otros nodos, mientras que solo unos pocos nodos tienen numerosas conexiones.
 En un nivel alto, esta topología gráfica se parece a una estrella: la red tiene un núcleo bien conectado y una periferia débilmente conectada.
 Las redes con distribución de grado de ley de potencia también se denominan redes sin escala.
-Esta topología es ventajosa para enrutar pagos de manera eficiente, pero es propensa a ciertos ataques basados ​​en topología.
+Esta topología es ventajosa para enrutar pagos de manera eficiente, pero es propensa a ciertos ataques basados en topología.
 
-===== Ataques basados ​​en topología
+===== Ataques basados en topología
 
 ((("Lightning graph","topology-based attacks")))((("topology-based attacks")))Un adversario podría querer interrumpir Lightning Network y decidir que su objetivo es desmantelar toda la red en muchos componentes más pequeños, haciendo que el enrutamiento de pagos sea prácticamente imposible en toda la red.
 
@@ -456,7 +456,7 @@ Sin embargo, si el adversario es más prudente, puede apuntar a los nodos mejor 
 No es de extrañar que Lightning Network y otras redes libres de escala _no_ sean sólidas contra los ataques dirigidos de eliminación de nodos.
 
 Por otro lado, el adversario podría ser más sigiloso.
-Varios ataques basados ​​en topología tienen como objetivo un solo nodo o un solo canal de pago.
+Varios ataques basados en topología tienen como objetivo un solo nodo o un solo canal de pago.
 Por ejemplo, un adversario podría estar interesado en agotar la capacidad de un determinado canal de pago a propósito.
 En términos más generales, un adversario puede agotar toda la capacidad de salida de un nodo para eliminarlo del mercado de enrutamiento.
 Esto podría obtenerse fácilmente enrutando los pagos a través del nodo víctima con montos equivalentes a la capacidad de salida de cada canal de pago.
@@ -601,7 +601,7 @@ En este capítulo, usamos muchas referencias de investigaciones en curso sobre s
 
 ==== Ataques de privacidad y sondeo
 
-* Jordi Herrera-Joancomartí et al. https://eprint.iacr.org/2019/328["On the Difficulty of Hiding the Balance of Lightning Network Channels"]. _Asia CCS '19: Proceedings of the 2019 ACM Asia Conference on Computer and Communications Security_ (July 2019): 602–612.
+* Jordi Herrera-Joancomarti et al. https://eprint.iacr.org/2019/328["On the Difficulty of Hiding the Balance of Lightning Network Channels"]. _Asia CCS '19: Proceedings of the 2019 ACM Asia Conference on Computer and Communications Security_ (July 2019): 602–612.
 * Utz Nisslmueller et al. "Toward Active and Passive Confidentiality Attacks on Cryptocurrency Off-Chain Networks." arXiv preprint, https://arxiv.org/abs/2003.00003[] (2020).
 * Sergei Tikhomirov et al. "Probing Channel Balances in the Lightning Network." arXiv preprint, https://arxiv.org/abs/2004.00333[] (2020).
 * George Kappos et al. "An Empirical Analysis of Privacy in the Lightning Network." arXiv preprint, https://arxiv.org/abs/2003.12470[] (2021).
