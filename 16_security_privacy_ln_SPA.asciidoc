@@ -600,7 +600,7 @@ In summary, privacy and security are nuanced, complex topics, and while many res
 
 In this chapter, we used many references from ongoing research on Lightning security. You may find these useful articles and papers listed by topic in the following lists.
 
-===== Privacy and probing attacks
+==== Privacy and probing attacks
 
 * Jordi Herrera-Joancomartí et al. https://eprint.iacr.org/2019/328["On the Difficulty of Hiding the Balance of Lightning Network Channels"]. _Asia CCS '19: Proceedings of the 2019 ACM Asia Conference on Computer and Communications Security_ (July 2019): 602–612.
 * Utz Nisslmueller et al. "Toward Active and Passive Confidentiality Attacks on Cryptocurrency Off-Chain Networks." arXiv preprint, https://arxiv.org/abs/2003.00003[] (2020).
