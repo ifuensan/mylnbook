@@ -3,6 +3,7 @@
 
 ((("seguridad y privacidad", id="ix_16_security_privacy_ln-asciidoc0", range="startofrange")))En este capítulo, analizamos algunos de los problemas más importantes relacionados con la seguridad y la privacidad de Lightning Network. Primero, consideraremos la privacidad, lo que significa, cómo evaluarla y algunas cosas que puede hacer para proteger su propia privacidad mientras usa Lightning Network. Luego exploraremos algunos ataques comunes y técnicas de mitigación.
 
+
 //ERROR
 === ¿Por que la Privacidad es importante?
 
@@ -386,7 +387,8 @@ Sin embargo, estos falsos positivos se pueden filtrar de manera efectiva.
 Si los resultados de las transacciones de financiación no se reutilizan para abrir otros canales, la heurística de la serpiente no funciona.
 Si los usuarios se abstienen de utilizar canales de financiación de una única fuente externa y evitan recaudar fondos en una única entidad de destino externa, las otras heurísticas no arrojarían ningún resultado significativo.
 
-==== Agrupación Off-Chain de nodos Lightning
+//ERROR
+==== Agrupacion Off-Chain de nodos Lightning
 ((("cross-layer de-anonymization","off-chain Lightning node clustering")))((("Lightning node clustering")))((("off-chain Lightning node clustering")))Los nodos de LN anuncian alias, por ejemplo, _LNBig.com_.
 Los alias pueden mejorar la usabilidad del sistema.
 Sin embargo, los usuarios tienden a usar alias similares para sus propios nodos diferentes.
@@ -468,7 +470,7 @@ More generally, an adversary can deplete all the outgoing capacity of a node to 
 This could be easily obtained by routing payments through the victim node with amounts equalling the outgoing capacity of each payment channel.
 After completing this so-called node isolation attack, the victim cannot send or route payments anymore unless it receives a payment or rebalances its channels.
 
-To conclude, even by design, it is possible to remove edges and nodes from the routable Lightning Network.
+To conclude,  even by design, it is possible to remove edges and nodes from the routable Lightning Network.
 However, depending on the utilized attack vector, the adversary may have to provide more or fewer resources to carry out the attack.
 
 
