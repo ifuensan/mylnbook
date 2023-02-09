@@ -116,10 +116,10 @@ Idealmente, el conjunto de anonimato consiste en todos los usuarios de la red.
 Esto asegura que el atacante no tiene información alguna.
 Sin embargo, la red real filtra información que permite a un atacante restringir la búsqueda.
 Cuanto más pequeño sea el conjunto de anonimato, mayor será la posibilidad de una desanonimización exitosa.
-
+////
 [role="pagebreak-before less_space"]
 === Diferencias entre Lightning Network y Bitcoin en términos de privacidad
-////
+
 ((("seguridad y privacidad","diferencias entre Lightning Network y Bitcoin en términos de privacidad", id="ix_16_security_privacy_ln-asciidoc2", range="startofrange")))Si bien es cierto que las transacciones en la red de Bitcoin no asocian identidades del mundo real con direcciones de Bitcoin, todas las transacciones se transmiten en texto no cifrado y se pueden analizar.
 Se han creado varias empresas que buscan la forma de eliminar el anonimato de los usuarios de Bitcoin y otras criptomonedas.
 
