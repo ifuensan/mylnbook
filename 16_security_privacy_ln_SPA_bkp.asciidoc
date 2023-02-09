@@ -43,7 +43,7 @@ Por ejemplo, considere a los desarrolladores de una billetera popular que mantie
 Este nodo sería responsable de enrutar una gran parte de los pagos hacia y desde los usuarios de esa billetera.
 ¿Qué pasa si varios nodos están bajo control adversario?
 Si dos nodos en connivencia se encuentran en la misma ruta de pago, entenderán que están reenviando HTLC que pertenecen al mismo pago porque los HTLC tienen el mismo hash de pago.
-////
+
 [NOTA]
 ====
 Los Pagos Multiparte (ver <<mpp>>) permiten a los usuarios ofuscar sus montos de pago debido a sus tamaños de división no uniformes.
@@ -70,7 +70,7 @@ Por supuesto, el término centralización debe definirse con precisión para con
 Finalmente, como red de pago, Lightning Network depende de estímulos económicos.
 El tamaño y la estructura de las tarifas afectan el algoritmo de enrutamiento y, por lo tanto, pueden ayudar al atacante reenviando la mayoría de los pagos a través de sus nodos o evitar que esto suceda.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc1")))
 
-
+////
 === Conjunto de anonimato 
 //Anonymity Set 
 
