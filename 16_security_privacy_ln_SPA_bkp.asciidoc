@@ -598,7 +598,7 @@ Higher risk:: Accept any incoming channels, and implement the mitigations descri
 === Conclusion
 In summary, privacy and security are nuanced, complex topics, and while many researchers and developers are looking for network-wide improvements, it's important for everyone participating in the network to understand what they can do to protect their own privacy and increase security on an individual node level.
 
-////
+
 === References and Further Reading
 
 In this chapter, we used many references from ongoing research on Lightning security. You may find these useful articles and papers listed by topic in the following lists.
@@ -618,6 +618,3 @@ In this chapter, we used many references from ongoing research on Lightning secu
 ===== Routing considerations
 
 * Marty Bent, interview with Joost Jager, _Tales from the Crypt_, podcast audio, October 2, 2020, https://anchor.fm/tales-from-the-crypt/episodes/197-Joost-Jager-ekghn6[].(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc0")))
-
-
- ////
