@@ -100,8 +100,6 @@ Finalmente, puedes ver el número de matrícula del coche que utilizó para lleg
 Si eres un observador casual, esto no te da mucho.
 Sin embargo, si tú eres un funcionario de la ciudad y tienes acceso a la base de datos que relaciona los números de matrícula con los nombres, puede reducir el anonimato establecido a solo unas pocas personas: el propietario del coche y cualquier amigo cercano y pariente que pueda haber tomado prestado dicho coche.
 
-////
-
 Este ejemplo ilustra algunos puntos importantes.
 Primero, cada bit de información puede acercar al adversario a su objetivo.
 Puede que no sea necesario reducir el conjunto de anonimato al tamaño de uno.
@@ -121,7 +119,7 @@ Cuanto más pequeño sea el conjunto de anonimato, mayor será la posibilidad de
 
 [role="pagebreak-before less_space"]
 === Diferencias entre Lightning Network y Bitcoin en términos de privacidad
-
+////
 ((("seguridad y privacidad","diferencias entre Lightning Network y Bitcoin en términos de privacidad", id="ix_16_security_privacy_ln-asciidoc2", range="startofrange")))Si bien es cierto que las transacciones en la red de Bitcoin no asocian identidades del mundo real con direcciones de Bitcoin, todas las transacciones se transmiten en texto no cifrado y se pueden analizar.
 Se han creado varias empresas que buscan la forma de eliminar el anonimato de los usuarios de Bitcoin y otras criptomonedas.
 
