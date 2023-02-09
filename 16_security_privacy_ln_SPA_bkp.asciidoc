@@ -135,7 +135,7 @@ Un usuario Lightning, al enviar un pago, tiene a sus vecinos en su conjunto de a
 Específicamente, un nodo de enrutamiento solo conoce los nodos inmediatamente anteriores y posteriores.
 El nodo de enrutamiento no sabe si sus vecinos inmediatos en la ruta de pago son el remitente o el receptor final.
 Por lo tanto, el conjunto de anonimato de un nodo en Lightning es aproximadamente igual al de sus vecinos (ver <<conjunto_de_anonimato>>).
-
+////
 [[conjunto_de_anonimato]]
 .El conjunto de anonimato de Alice y Bob constituye sus vecinos
 image::images/mtln_1601.png["El conjunto de anonimato de Alice y Bob constituye sus vecinos"]
@@ -146,7 +146,7 @@ Por el contrario, uno puede lograr conjuntos de anonimato significativamente má
 Por lo general, los conjuntos de anonimato en una transacción CoinJoin corresponden a un conjunto de usuarios que cambia dinámicamente. Finalmente, a los usuarios de Lightning también se les puede negar el servicio, y un atacante puede bloquear o agotar sus canales.
 
 El reenvío de pagos requiere que el capital (¡un recurso escaso!) se bloquee temporalmente en los HTLC a lo largo de la ruta. Un atacante puede enviar muchos pagos pero no finalizarlos, ocupando el capital de los usuarios honestos durante largos períodos.
-////
+
 Este vector de ataque no está presente (o al menos no es tan obvio) en Bitcoin. En resumen, aunque algunos aspectos de la arquitectura de Lightning Network sugieren que es un paso adelante en términos de privacidad en comparación con Bitcoin, otras propiedades del protocolo pueden facilitar los ataques a la privacidad. Se necesita una investigación exhaustiva para evaluar qué garantías de privacidad proporciona Lightning Network y mejorar la situación.
 
 Los temas discutidos en esta parte del capítulo resumen la investigación disponible a mediados de 2021. Sin embargo, esta área de investigación y desarrollo está creciendo rápidamente. Nos complace informar que los autores conocen varios equipos de investigación que trabajan actualmente en la privacidad de Lightning. Ahora revisemos algunos de los ataques a la privacidad de LN que se han descrito en la literatura académica. (((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc2")))
