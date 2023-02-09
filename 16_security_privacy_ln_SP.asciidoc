@@ -1,0 +1,206 @@
+[[seguridad_y_privacidad]]
+== Seguridad y Privacidad de pass:[<span class="keep-together">Lightning Network</span>]
+
+//((("seguridad y privacidad", id="ix_16_security_privacy_ln-asciidoc0", range="startofrange")))
+En este cap'itulo, analizamos algunos de los problemas m'as importantes relacionados con la seguridad y la privacidad de Lightning Network. Primero, consideraremos la privacidad, lo que significa, c'omo evaluarla y algunas cosas que puede hacer para proteger su propia privacidad mientras usa Lightning Network. Luego exploraremos algunos ataques comunes y t'ecnicas de mitigaci'on.
+
+
+=== ?Por que la Privacidad es importante?
+
+((("seguridad y privacidad","importancia de la privacidad")))
+La propuesta de valor clave de la criptomoneda es que estamos ante dinero resistente a la censura. Bitcoin ofrece a los participantes la posibilidad de almacenar y transferir su riqueza sin interferencias de los gobiernos, bancos o corporaciones. Lightning Network contin'ua con esta misi'on.
+
+
+//The key value proposition of cryptocurrency is censorship resistant money. Bitcoin offers participants the possibility of storing and transferring their wealth without interference by governments, banks, or corporations. The Lightning Network continues this mission.
+
+//Unlike trivial scaling solutions like custodial Bitcoin banks, the Lightning Network aims to scale Bitcoin without compromising on self custody, which should lead to greater censorship resistance in the Bitcoin ecosystem. However, the Lightning Network operates under a different security model, which introduces novel security and privacy challenges.
+A diferencia de las soluciones de escalado triviales como los bancos de custodia de Bitcoin, Lightning Network tiene como objetivo escalar Bitcoin sin comprometer la autocustodia, lo que deber'ia conducir a una mayor resistencia a la censura en el ecosistema de Bitcoin. Sin embargo, Lightning Network opera bajo un modelo de seguridad diferente, que presenta nuevos desaf'ios de seguridad y privacidad.
+
+=== Definiciones de privacidad
+
+((("seguridad y privacidad","definiciones de privacidad", id="ix_16_security_privacy_ln-asciidoc1", range="startofrange"))) A la pregunta, "?Es Lightning privado?", no hay una respuesta directa. La privacidad es un tema complejo; a menudo es dif'icil definir con precisi'on lo que entendemos por privacidad, especialmente si no eres un investigador de privacidad. Afortunadamente, los investigadores de la privacidad utilizan proceesos para analizar y evaluar las caracter'isticas de un sistema en cuanto a privacidad, !y nosotros podemos utilizarlas tambi'en! Veamos c'omo un investigador de seguridad podr'ia tratar de responder a la pregunta "?Es Lightning privado?" en dos pasos generales.
+//The question, "Is Lightning private?" has no direct answer. Privacy is a complex topic; it is often difficult to precisely define what we mean by privacy, particularly if you are not a privacy researcher. Fortunately, privacy researchers use processes to analyze and evaluate the privacy characteristics of systems, and we can use them too! Let's look at how a security researcher might seek to answer the question, "Is Lightning private?" in two general steps.
+
+Primero, un investigador de privacidad definir'ia un _modelo de seguridad_ que especifica lo que un adversario es capaz de hacer y pretende lograr.
+Luego, describir'ian las propiedades relevantes del sistema y verificar'ian si cumple con los requisitos.
+
+=== Proceso para evaluar la privacidad
+
+((("seguridad y privacidad","proceso para evaluar la privacidad")))((("security assumptions")))
+Un modelo de seguridad se basa en un conjunto de _supuestos de seguridad_ subyacentes.
+En los sistemas criptogr'aficos, estas suposiciones a menudo se centran en las propiedades matem'aticas de las primitivas criptogr'aficas, como cifrados, firmas y funciones hash.
+Las suposiciones de seguridad de Lightning Network son que las firmas ECDSA, la funci'on hash SHA-256 y otras funciones criptogr'aficas utilizadas en el protocolo se comportan dentro de sus definiciones de seguridad.
+Por ejemplo, asumimos que es pr'acticamente imposible encontrar una preimagen (y una segunda preimagen) de una funci'on hash.
+Esto permite que Lightning Network conf'ie en el mecanismo HTLC (que usa la preimagen de una funci'on hash) para la atomicidad de los pagos multisalto: nadie excepto el destinatario final puede revelar el secreto del pago y resolver el HTLC.
+Tambi'en asumimos un grado de conectividad en la red, es decir, que los canales Lightning forman un gr'afico conectado. Por lo tanto, es posible encontrar un camino desde cualquier emisor a cualquier receptor. Finalmente, asumimos que los mensajes de red se propagan dentro de ciertos tiempos de espera.
+
+Ahora que hemos identificado algunas de nuestras suposiciones subyacentes, consideremos algunos posibles adversarios.
+
+Estos son algunos modelos posibles de adversarios en Lightning Network.
+Un nodo de reenv'io "honesto pero curioso" puede observar los montos de los pagos, los nodos inmediatamente anteriores y posteriores, y el gr'afico de los canales anunciados con sus capacidades.
+Un nodo muy bien conectado puede hacer lo mismo pero en mayor medida.
+Por ejemplo, considere a los desarrolladores de una billetera popular que mantienen un nodo al que sus usuarios se conectan de forma predeterminada.
+Este nodo ser'ia responsable de enrutar una gran parte de los pagos hacia y desde los usuarios de esa billetera.
+?Qu'e pasa si varios nodos est'an bajo control adversario?
+Si dos nodos en connivencia se encuentran en la misma ruta de pago, entender'an que est'an reenviando HTLC que pertenecen al mismo pago porque los HTLC tienen el mismo hash de pago.
+
+[NOTA]
+====
+Los Pagos Multiparte (ver <<mpp>>) permiten a los usuarios ofuscar sus montos de pago debido a sus tama~nos de divisi'on no uniformes.
+====
+
+?Cu'ales pueden ser los objetivos de un atacante Lightning?
+La seguridad de la informaci'on a menudo se describe en t'erminos de tres propiedades principales: confidencialidad, integridad y disponibilidad.
+
+Confidencialidad:: La informaci'on solo llega a los destinatarios previstos.
+Integridad:: La informaci'on no se altera en tr'ansito.
+Disponibilidad:: El sistema funciona la mayor parte del tiempo.
+
+Las propiedades importantes de Lightning Network se centran principalmente en la confidencialidad y la disponibilidad. Algunas de las propiedades m'as importantes para la protecci'on incluyen:
+
+* Solo el remitente y el destinatario conocen el monto del pago.
+* Nadie puede vincular emisores y receptores.
+* Un usuario honesto no puede ser bloqueado para enviar y recibir pagos.
+
+Para cada objetivo de privacidad y modelo de seguridad, existe una cierta probabilidad de que un atacante tenga 'exito.
+Esta probabilidad depende de varios factores, como el tama~no y la estructura de la red.
+En igualdad de condiciones, generalmente es m'as f'acil atacar con 'exito una red peque~na que una grande.
+Del mismo modo, cuanto m'as centralizada es la red, m'as capaz puede ser un atacante si los nodos "centrales" est'an bajo su control.
+Por supuesto, el t'ermino centralizaci'on debe definirse con precisi'on para construir modelos de seguridad a su alrededor, y hay muchas definiciones posibles de qu'e tan centralizada es una red.
+Finalmente, como red de pago, Lightning Network depende de est'imulos econ'omicos.
+El tama~no y la estructura de las tarifas afectan el algoritmo de enrutamiento y, por lo tanto, pueden ayudar al atacante reenviando la mayor'ia de los pagos a trav'es de sus nodos o evitar que esto suceda.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc1")))
+
+
+=== Conjunto de anonimato 
+//Anonymity Set 
+
+((("conjunto_de_anonimato")))((("desanonimizar")))((("seguridad y privacidad","conjunto de anonimato")))
+?Qu'e significa desanonimizar a alguien?
+En t'erminos simples, la desanonimizaci'on implica vincular alguna acci'on con la identidad del mundo real de una persona, como su nombre o direcci'on f'isica.
+
+En la investigaci'on de la privacidad, la noci'on de desanonimizaci'on tiene m'as matices.
+Primero, no estamos necesariamente hablando de nombres y direcciones.
+Descubrir la direcci'on IP o el n'umero de tel'efono de alguien tambi'en puede considerarse anonimizaci'on.
+Una pieza de informaci'on que permite vincular la acci'on de un usuario con sus acciones anteriores se denomina _identidad_.
+
+En segundo lugar, la desanonimizaci'on no es binaria; un usuario no es completamente an'onimo ni completamente desanonimizado.
+En cambio, la investigaci'on de privacidad analiza el anonimato en comparaci'on con el conjunto de anonimato.
+
+El _conjunto de anonimato_ es una noci'on central en la investigaci'on de la privacidad.
+Se refiere al conjunto de identidades tales que, desde el punto de vista de un atacante, una acci'on dada podr'ia corresponder a cualquiera en el conjunto.
+Considere un ejemplo de la vida real.
+Imagina que conoces a una persona en una calle de la ciudad.
+?Cu'al es su anonimato establecido desde t'u punto de vista?
+Si no lo conoces personalmente y sin ninguna informaci'on adicional, su conjunto de anonimato equivale aproximadamente a la poblaci'on de la ciudad, incluidos los viajeros.
+Si adem'as consideras su apariencia, es posible que pueda estimar aproximadamente su edad y excluir a los residentes de la ciudad que obviamente son mayores o menores que la persona en cuesti'on del conjunto de anonimato.
+Adem'as, si observas que la persona ingresa a la oficina de la empresa X con una credencial electr'onica,
+//the anonymity set shrinks to the number pass:[<span class="keep-together">of Company</span>] X's employees and visitors.
+el conjunto de anonimato se reduce al pase de n'umero: de empleados y visitantes [<span class="keep-together">de la empresa</span>] X.
+Finalmente, puedes ver el n'umero de matr'icula del coche que utiliz'o para llegar al lugar.
+Si eres un observador casual, esto no te da mucho.
+Sin embargo, si t'u eres un funcionario de la ciudad y tienes acceso a la base de datos que relaciona los n'umeros de matr'icula con los nombres, puede reducir el anonimato establecido a solo unas pocas personas: el propietario del coche y cualquier amigo cercano y pariente que pueda haber tomado prestado dicho coche.
+
+Este ejemplo ilustra algunos puntos importantes.
+Primero, cada bit de informaci'on puede acercar al adversario a su objetivo.
+Puede que no sea necesario reducir el conjunto de anonimato al tama~no de uno.
+Por ejemplo, si el adversario planea un ataque de denegaci'on de servicio (DoS) dirigido y puede derribar 100 servidores, el conjunto de anonimato de 100 es suficiente.
+En segundo lugar, el adversario puede correlacionar informaci'on de diferentes fuentes.
+Incluso si una fuga de privacidad parece relativamente benigna, nunca sabemos lo que puede lograr en combinaci'on con otras fuentes de datos.
+Finalmente, especialmente en configuraciones criptogr'aficas, el atacante siempre tiene el "'ultimo recurso" de una b'usqueda de fuerza bruta.
+Las primitivas criptogr'aficas est'an dise~nadas para que sea pr'acticamente imposible adivinar un secreto como una clave privada.
+Sin embargo, cada bit de informaci'on acerca al adversario a este objetivo y, en alg'un momento, se vuelve alcanzable.
+
+En t'erminos de Lightning, eliminar el anonimato generalmente significa derivar una correspondencia entre pagos y usuarios identificados por ID de nodo.
+A cada pago se le puede asignar un conjunto de anonimato de remitente y un conjunto de anonimato de receptor.
+Idealmente, el conjunto de anonimato consiste en todos los usuarios de la red.
+Esto asegura que el atacante no tiene informaci'on alguna.
+Sin embargo, la red real filtra informaci'on que permite a un atacante restringir la b'usqueda.
+Cuanto m'as peque~no sea el conjunto de anonimato, mayor ser'a la posibilidad de una desanonimizaci'on exitosa.
+////
+[role="pagebreak-before less_space"]
+=== Diferencias entre Lightning Network y Bitcoin en t'erminos de privacidad
+
+((("seguridad y privacidad","diferencias entre Lightning Network y Bitcoin en t'erminos de privacidad", id="ix_16_security_privacy_ln-asciidoc2", range="startofrange")))Si bien es cierto que las transacciones en la red de Bitcoin no asocian identidades del mundo real con direcciones de Bitcoin, todas las transacciones se transmiten en texto no cifrado y se pueden analizar.
+Se han creado varias empresas que buscan la forma de eliminar el anonimato de los usuarios de Bitcoin y otras criptomonedas.
+
+A primera vista, Lightning brinda una mejor privacidad que Bitcoin porque los pagos de Lightning no se transmiten a toda la red.
+Si bien esto mejora la l'inea base de privacidad, otras propiedades del protocolo Lightning pueden hacer que los pagos an'onimos sean m'as desafiantes.
+Por ejemplo, los pagos m'as grandes pueden tener menos opciones de enrutamiento.
+Esto puede permitir que un adversario que controle nodos bien capitalizados enrute la mayor'ia de los pagos grandes y, que descubra los cantidades y probablemente otros detalles. Con el tiempo, a medida que crece Lightning Network, esto puede convertirse en un problema menor.
+
+Otra diferencia relevante entre Lightning y Bitcoin es que los nodos Lightning mantienen una identidad permanente, mientras que los nodos Bitcoin no.
+Un usuario sofisticado de Bitcoin puede cambiar f'acilmente los nodos utilizados para recibir datos de la blockchain y transmitir transacciones.
+Un usuario Lightning, por el contrario, env'ia y recibe pagos a trav'es de los nodos que ha utilizado para abrir sus canales de pago.
+Adem'as, el protocolo Lightning asume que los nodos de enrutamiento anuncian su direcci'on IP adem'as de su ID de nodo.
+Esto crea un v'inculo permanente entre los ID de nodo y las direcciones IP, lo que puede ser peligroso si se tiene en cuenta que una direcci'on IP suele ser un paso intermedio en los ataques de anonimato vinculados a la ubicaci'on f'isica del usuario y, en la mayor'ia de los casos, a la identidad del mundo real.
+Es posible usar Lightning sobre Tor, pero muchos nodos no usan esta funcionalidad, como se puede ver en https://1ml.com/statistics[estad'isticas recopiladas de los nodos anunciados].
+
+Un usuario Lightning, al enviar un pago, tiene a sus vecinos en su conjunto de anonimato.
+Espec'ificamente, un nodo de enrutamiento solo conoce los nodos inmediatamente anteriores y posteriores.
+El nodo de enrutamiento no sabe si sus vecinos inmediatos en la ruta de pago son el remitente o el receptor final.
+Por lo tanto, el conjunto de anonimato de un nodo en Lightning es aproximadamente igual al de sus vecinos (ver <<conjunto_de_anonimato>>).
+
+[[conjunto_de_anonimato]]
+.El conjunto de anonimato de Alice y Bob constituye sus vecinos
+image::images/mtln_1601.png["El conjunto de anonimato de Alice y Bob constituye sus vecinos"]
+
+Se aplica una l'ogica similar a los receptores de pago. Muchos usuarios abren solo un pu~nado de canales de pago, lo que limita sus conjuntos de anonimato. Adem'as, en Lightning, el conjunto de anonimato es est'atico o al menos cambia lentamente.
+
+Por el contrario, uno puede lograr conjuntos de anonimato significativamente m'as grandes en transacciones CoinJoin en cadena. Las transacciones CoinJoin con conjuntos de anonimato mayores de 50 son bastante frecuentes.
+Por lo general, los conjuntos de anonimato en una transacci'on CoinJoin corresponden a un conjunto de usuarios que cambia din'amicamente. Finalmente, a los usuarios de Lightning tambi'en se les puede negar el servicio, y un atacante puede bloquear o agotar sus canales.
+
+El reenv'io de pagos requiere que el capital (!un recurso escaso!) se bloquee temporalmente en los HTLC a lo largo de la ruta. Un atacante puede enviar muchos pagos pero no finalizarlos, ocupando el capital de los usuarios honestos durante largos per'iodos.
+
+Este vector de ataque no est'a presente (o al menos no es tan obvio) en Bitcoin. En resumen, aunque algunos aspectos de la arquitectura de Lightning Network sugieren que es un paso adelante en t'erminos de privacidad en comparaci'on con Bitcoin, otras propiedades del protocolo pueden facilitar los ataques a la privacidad. Se necesita una investigaci'on exhaustiva para evaluar qu'e garant'ias de privacidad proporciona Lightning Network y mejorar la situaci'on.
+
+Los temas discutidos en esta parte del cap'itulo resumen la investigaci'on disponible a mediados de 2021. Sin embargo, esta 'area de investigaci'on y desarrollo est'a creciendo r'apidamente. Nos complace informar que los autores conocen varios equipos de investigaci'on que trabajan actualmente en la privacidad de Lightning. Ahora revisemos algunos de los ataques a la privacidad de LN que se han descrito en la literatura acad'emica. (((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc2")))
+
+
+=== Ataques en Lightning
+
+((("seguridad y privacidad","ataques en Lightning", seealso="violaci'on de la privacidad", id="ix_16_security_privacy_ln-asciidoc3", range="startofrange")))Investigaciones recientes describen varias formas en las que la seguridad y la privacidad de Lightning Network pueden verse comprometidas.
+
+==== Observando los montos de pago
+
+((("violaci'on de la privacidad","Observando los montos de pago")))Uno de los objetivos de un sistema de pago que preserva la privacidad es ocultar el monto del pago a las partes no involucradas.
+Lightning Network es una mejora sobre la Capa 1 en este sentido.
+Si bien las transacciones de Bitcoin se transmiten en texto sin cifrar y cualquier persona puede observarlas, los pagos Lightning solo viajan a trav'es de unos pocos nodos a lo largo de la ruta de pago.
+Sin embargo, los nodos intermediarios ven el monto del pago, aunque este monto del pago puede no corresponder al monto del pago total real (ver <<mpp>>).
+Esto es necesario para crear un nuevo HTLC en cada salto.
+La disponibilidad de montos de pago para los nodos intermediarios no presenta una amenaza inmediata.
+Sin embargo, un nodo intermediario _honesto pero curioso_ puede usarlo como parte de un ataque mayor.
+
+
+==== Vinculando remitentes y receptores
+
+((("violaci'on de la privacidad","vinculando remitentes y receptores", id="ix_16_security_privacy_ln-asciidoc4", range="startofrange")))Un atacante podr'ia estar interesado en conocer el remitente y/o el receptor de un pago para revelar ciertas relaciones econ'omicas.
+Esta violaci'on de la privacidad podr'ia da~nar la resistencia a la censura, ya que un nodo intermediario podr'ia censurar los pagos hacia o desde ciertos destinatarios o remitentes.
+Idealmente, la vinculaci'on de remitentes con receptores no deber'ia ser posible para nadie m'as que el remitente y el receptor.
+
+En las siguientes secciones, consideraremos dos tipos de adversarios: el adversario fuera del camino y el adversario en el camino.
+Un adversario fuera de la ruta intenta evaluar al remitente y al receptor de un pago sin participar en el proceso de enrutamiento del pago.
+Un adversario en camino puede aprovechar cualquier informaci'on que pueda obtener enrutando el pago de intereses.
+
+((("adversario fuera de la ruta")))Primero, considere al _adversario fuera de la ruta. En el primer paso de este escenario de ataque, un potente adversario fuera de ruta deduce los saldos individuales en cada canal de pago a trav'es de un sondeo (descrito en una secci'on posterior) y forma una instant'anea de la red en el momento __t~1~__. Para simplificar, hagamos que __t~1~__ sea igual a 12:05. Luego sondea la red nuevamente en alg'un momento posterior en el tiempo __t~2~__, que haremos 12:10. Luego, el atacante comparar'ia las instant'aneas a las 12:10 y las 12:05 y usar'ia las diferencias entre las dos instant'aneas para inferir informaci'on sobre los pagos que se realizaron al observar las rutas que han cambiado. En el caso m'as simple, si solo se produjera un pago entre las 12:10 y las 12:05, el adversario observar'ia un 'unico camino donde los saldos han cambiado en las mismas cantidades. As'i, el adversario aprende casi todo sobre este pago: el remitente, el destinatario y el monto. Si varias rutas de pago se superponen, el adversario debe aplicar heur'isticas para identificar dicha superposici'on y separar los pagos. 
+
+((("adversario en la ruta"))) Ahora, dirigimos nuestra atenci'on a un _adversario en la ruta.
+Tal adversario puede parecer complicado.
+Sin embargo, en junio de 2020, los investigadores notaron que el 'unico nodo m'as central https://arxiv.org/pdf/2006.12143.pdf[observ'o cerca del 50% de todos los pagos de LN], mientras que los cuatro nodos m'as centrales. https://arxiv.org/pdf/1909.06890.pdf[observ'o un promedio de 72% de pagos].
+
+Estos hallazgos enfatizan la relevancia del modelo de atacante en ruta.
+Aunque los intermediarios en una ruta de pago solo conocen a su sucesor y predecesor, existen varias filtraciones que un intermediario malicioso u honesto pero curioso, podr'ia usar para inferir qui'en es el remitente y el destinatario.
+
+El adversario en ruta puede observar el monto de cualquier pago enrutado, as'i como los deltas de bloqueo de tiempo (consulte <<onion_routing>>).
+Por lo tanto, el adversario puede excluir cualquier nodo del conjunto de anonimato del remitente o del receptor con capacidades inferiores a la cantidad enrutada.
+Por lo tanto, observamos una compensaci'on entre privacidad y montos de pago.
+Por lo general, cuanto mayor es el monto del pago, m'as peque~nos son los conjuntos de anonimato.
+Observamos que esta fuga podr'ia minimizarse con pagos multiparte o con canales de pago de gran capacidad.
+De manera similar, los canales de pago con peque~nos deltas de bloqueo de tiempo podr'ian excluirse de una ruta de pago.
+M'as precisamente, un canal de pago no puede pertenecer a un pago si el tiempo restante durante el cual el pago podr'ia estar bloqueado es mayor que el que el nodo de reenv'io estar'ia dispuesto a aceptar.
+Esta fuga podr'ia ser desalojada adhiri'endose a las llamadas rutas sombra.
+
+Una de las filtraciones m'as sutiles y poderosas que un adversario en ruta puede fomentar es el an'alisis de tiempo.
+Un adversario en ruta puede mantener un registro de cada pago enrutado, junto con la cantidad de tiempo que tarda un nodo en responder a una solicitud HTLC.
+Antes de comenzar el ataque, el atacante aprende las caracter'isticas de latencia de cada nodo en Lightning Network envi'andoles solicitudes.
+Naturalmente, esto puede ayudar a establecer la posici'on precisa del adversario en la ruta de pago.
+M'as a'un, como se demostr'o recientemente, un atacante puede determinar con 'exito el remitente y el destinatario de un pago a partir de un conjunto de posibles remitentes y destinatarios utilizando estimadores basados
