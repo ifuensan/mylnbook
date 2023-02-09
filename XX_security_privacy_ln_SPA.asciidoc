@@ -297,6 +297,7 @@ Muchas de estas transacciones no fueron seleccionadas por los mineros debido a s
 Para abordar este problema, se estableció una tarifa mínima de retransmisión de transacciones que establece una tarifa de umbral que los nodos requieren para propagar transacciones.
 Esta medida aseguró en gran medida que las transacciones que consumen recursos de la red finalmente pagarán sus tarifas de cadena.
 La tarifa mínima de retransmisión es aceptable para los usuarios habituales, pero perjudicaría financieramente a los atacantes si intentaran enviar spam a la red.
+<<<<<<< HEAD
 Si bien es posible que algunas transacciones no se conviertan en bloques válidos en entornos de tarifas altas, estas medidas han sido en gran medida efectivas para disuadir este tipo de spam.
 
 ===== DoS en Lightning
@@ -617,3 +618,6 @@ In this chapter, we used many references from ongoing research on Lightning secu
 * Marty Bent, interview with Joost Jager, _Tales from the Crypt_, podcast audio, October 2, 2020, https://anchor.fm/tales-from-the-crypt/episodes/197-Joost-Jager-ekghn6[].(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc0")))
 
 
+=======
+Si bien es posible que algunas transacciones no se conviertan en bloques válidos en entornos de tarifas altas, estas medidas han sido en gran medida efectivas para disuadir este tipo de spam.
+>>>>>>> 2226c55 (arreglo)
