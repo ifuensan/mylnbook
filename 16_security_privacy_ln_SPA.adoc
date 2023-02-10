@@ -566,7 +566,7 @@ Algunas pautas útiles para un limitador de velocidad personalizado son las sigu
 +
 ** Limite la cantidad de espacios de compromiso que un solo par puede consumir
 ** Monitoree las tasas de fallas de un solo par y limite la tasa si sus fallas aumentan repentinamente
-Canales ocultos: los nodos que deseen abrir grandes canales a un solo objetivo pueden, en cambio, abrir un solo canal público al objetivo y admitirlo con más canales privados llamados pass:[<a href='https://anchor.fm/tales-from-the-crypt/episodes/197-Joost-Jager-ekghn6'>shadow channels</a>]. Estos canales aún se pueden usar para el enrutamiento, pero no se anuncian a los posibles atacantes.
+Canales ocultos: los nodos que deseen abrir grandes canales a un solo objetivo pueden, en cambio, abrir un solo canal público al objetivo y admitirlo con más canales privados llamados https://anchor.fm/tales-from-the-crypt/episodes/197-Joost-Jager-ekghn6">[shadow channels]. Estos canales aún se pueden usar para el enrutamiento, pero no se anuncian a los posibles atacantes.
 
 ==== Aceptar canales
 ((("routing","accepting channels")))En la actualidad, los nodos Lightning tienen dificultades para arrancar la liquidez entrante. Si bien hay algunos pagados
