@@ -18,7 +18,7 @@ A diferencia de las soluciones de escalado triviales como los bancos de custodia
 //The question, "Is Lightning private?" has no direct answer. Privacy is a complex topic; it is often difficult to precisely define what we mean by privacy, particularly if you are not a privacy researcher. Fortunately, privacy researchers use processes to analyze and evaluate the privacy characteristics of systems, and we can use them too! Let's look at how a security researcher might seek to answer the question, "Is Lightning private?" in two general steps.
 
 Primero, un investigador de privacidad definiría un _modelo de seguridad_ que especifica lo que un adversario es capaz de hacer y pretende lograr.
-Luego, describirían las propiedades relevantes del sistema y verificarían si cumple con los requisitos.
+Luego, describiría las propiedades relevantes del sistema y verificaría si cumple con los requisitos.
 
 === Proceso para evaluar la privacidad
 
@@ -38,7 +38,11 @@ Un nodo muy bien conectado puede hacer lo mismo pero en mayor medida.
 Por ejemplo, considere a los desarrolladores de una billetera popular que mantienen un nodo al que sus usuarios se conectan de forma predeterminada.
 Este nodo sería responsable de enrutar una gran parte de los pagos hacia y desde los usuarios de esa billetera.
 ¿Qué pasa si varios nodos están bajo control adversario?
-Si dos nodos en connivencia se encuentran en la misma ruta de pago, entenderán que están reenviando HTLC que pertenecen al mismo pago porque los HTLC tienen el mismo hash de pago.
+Si dos nodos que confabulan se encuentran en la misma ruta de pago, entenderán que están reenviando HTLC que pertenecen al mismo pago porque los HTLC tienen el mismo hash de pago.
+
+If two colluding nodes happen to be on the same payment path, they would understand that they are forwarding HTLCs belonging to the same payment because HTLCs have the same payment hash.
+
+If two colluding nodes happen to be on the same payment path, they would understand that they are forwarding HTLCs belonging to the same payment because HTLCs have the same payment hash.
 
 [NOTA]
 ====
