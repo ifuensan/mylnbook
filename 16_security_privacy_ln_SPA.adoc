@@ -38,15 +38,11 @@ Un nodo muy bien conectado puede hacer lo mismo pero en mayor medida.
 Por ejemplo, considere a los desarrolladores de una billetera popular que mantienen un nodo al que sus usuarios se conectan de forma predeterminada.
 Este nodo sería responsable de enrutar una gran parte de los pagos hacia y desde los usuarios de esa billetera.
 ¿Qué pasa si varios nodos están bajo control adversario?
-Si dos nodos que confabulan se encuentran en la misma ruta de pago, entenderán que están reenviando HTLC que pertenecen al mismo pago porque los HTLC tienen el mismo hash de pago.
-
-If two colluding nodes happen to be on the same payment path, they would understand that they are forwarding HTLCs belonging to the same payment because HTLCs have the same payment hash.
-
-If two colluding nodes happen to be on the same payment path, they would understand that they are forwarding HTLCs belonging to the same payment because HTLCs have the same payment hash.
+Si dos nodos que confabulan se encuentran en la misma ruta de pago, entenderán que están reenviando HTLCs que pertenecen al mismo pago porque los HTLCs tienen el mismo hash de pago.
 
 [NOTA]
 ====
-Los Pagos Multiparte (ver <<mpp>>) permiten a los usuarios ofuscar sus montos de pago debido a sus tamaños de división no uniformes.
+Los Pagos Multiparte o también llamados Pagos Multiruta (ver <<mpp>>) permiten a los usuarios ofuscar sus montos de pago debido a sus tamaños de división no uniformes.
 ====
 
 ¿Cuáles pueden ser los objetivos de un atacante Lightning?
@@ -141,8 +137,8 @@ El nodo de enrutamiento no sabe si sus vecinos inmediatos en la ruta de pago son
 Por lo tanto, el conjunto de anonimato de un nodo en Lightning es aproximadamente igual al de sus vecinos (ver <<conjunto_de_anonimato>>).
 
 [[conjunto_de_anonimato]]
-.El conjunto de anonimato de Alice y Bob constituye sus vecinos
-image::images/mtln_1601.png["El conjunto de anonimato de Alice y Bob constituye sus vecinos"]
+.El conjunto de anonimato de Alice y Bob lo constituyen sus vecinos
+image::images/mtln_1601.png["El conjunto de anonimato de Alice y Bob lo constituyen sus vecinos"]
 
 Se aplica una lógica similar a los receptores de pago. Muchos usuarios abren solo un puñado de canales de pago, lo que limita sus conjuntos de anonimato. Además, en Lightning, el conjunto de anonimato es estático o al menos cambia lentamente.
 
@@ -182,7 +178,7 @@ En las siguientes secciones, consideraremos dos tipos de adversarios: el adversa
 Un adversario fuera de la ruta intenta evaluar al remitente y al receptor de un pago sin participar en el proceso de enrutamiento del pago.
 Un adversario en camino puede aprovechar cualquier información que pueda obtener enrutando el pago de intereses.
 
-((("adversario fuera de la ruta")))Primero, considere al _adversario fuera de la ruta. En el primer paso de este escenario de ataque, un potente adversario fuera de ruta deduce los saldos individuales en cada canal de pago a través de un sondeo (descrito en una sección posterior) y forma una instantánea de la red en el momento __t~1~__. Para simplificar, hagamos que __t~1~__ sea igual a 12:05. Luego sondea la red nuevamente en algún momento posterior en el tiempo __t~2~__, que haremos 12:10. Luego, el atacante compararía las instantáneas a las 12:10 y las 12:05 y usaría las diferencias entre las dos instantáneas para inferir información sobre los pagos que se realizaron al observar las rutas que han cambiado. En el caso más simple, si solo se produjera un pago entre las 12:10 y las 12:05, el adversario observaría un único camino donde los saldos han cambiado en las mismas cantidades. Así, el adversario aprende casi todo sobre este pago: el remitente, el destinatario y el monto. Si varias rutas de pago se superponen, el adversario debe aplicar heurísticas para identificar dicha superposición y separar los pagos. 
+((("adversario fuera de la ruta")))Primero, considera al _adversario_ fuera de la ruta. En el primer paso de este escenario de ataque, un potente adversario fuera de ruta deduce los saldos individuales en cada canal de pago a través de un sondeo (descrito en una sección posterior) y forma una instantánea de la red en el momento __t~1~__. Para simplificar, hagamos que __t~1~__ sea igual a 12:05. Luego sondea la red nuevamente en algún momento posterior en el tiempo __t~2~__, que haremos 12:10. Luego, el atacante compararía las instantáneas a las 12:10 y las 12:05 y usaría las diferencias entre las dos instantáneas para inferir información sobre los pagos que se realizaron al observar las rutas que han cambiado. En el caso más simple, si solo se produjera un pago entre las 12:10 y las 12:05, el adversario observaría un único camino donde los saldos han cambiado en las mismas cantidades. Así, el adversario aprende casi todo sobre este pago: el remitente, el destinatario y el monto. Si varias rutas de pago se superponen, el adversario debe aplicar heurísticas para identificar dicha superposición y separar los pagos. 
 
 ((("adversario en la ruta"))) Ahora, dirigimos nuestra atención a un _adversario en la ruta.
 Tal adversario puede parecer complicado.
@@ -290,7 +286,7 @@ Generalmente, esto se logra cuando el atacante bombardea un recurso con solicitu
 Los ataques rara vez dan como resultado que el objetivo sufra pérdidas financieras, aparte del costo de oportunidad de la caída de su servicio, y simplemente tienen la intención de agraviar al objetivo.
 
 Las mitigaciones típicas de los ataques DoS requieren la autenticación de las solicitudes para separar a los usuarios legítimos de los malintencionados. Estas mitigaciones incurren en un costo trivial para los usuarios regulares, pero actuarán como un impedimento suficiente para que un atacante inicie solicitudes a gran escala.
-Las medidas contra la denegación de servicio se pueden ver en todas partes en Internet: los sitios web aplican límites de velocidad para garantizar que ningún usuario pueda consumir toda la atención de su servidor, los sitios de reseñas de películas requieren autenticación de inicio de sesión para mantenerse enojado r/prequelmemes (grupo Reddit) miembros a raya, y los servicios de datos venden claves API para limitar el número de consultas.
+Las medidas contra la denegación de servicio se pueden ver en todas partes en Internet: los sitios web aplican límites de velocidad para garantizar que ningún usuario pueda consumir toda la atención de su servidor, los sitios de reseñas de películas requieren autenticación de inicio de sesión para mantener a raya a los miembros cabreados de r/prequelmemes (grupo Reddit), y los servicios de datos venden claves API para limitar el número de consultas.
 
 ===== DoS en Bitcoin
 
