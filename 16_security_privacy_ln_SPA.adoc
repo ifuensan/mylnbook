@@ -7,15 +7,12 @@ En este capítulo, analizamos algunos de los problemas más importantes relacion
 === ¿Por qué la Privacidad es importante?
 
 ((("seguridad y privacidad","importancia de la privacidad"))) La propuesta de valor clave de la criptomoneda es que estamos ante dinero resistente a la censura. Bitcoin ofrece a los participantes la posibilidad de almacenar y transferir su riqueza sin interferencias de los gobiernos, bancos o corporaciones. Lightning Network continúa con esta misión.
-//The key value proposition of cryptocurrency is censorship resistant money. Bitcoin offers participants the possibility of storing and transferring their wealth without interference by governments, banks, or corporations. The Lightning Network continues this mission.
 
-//Unlike trivial scaling solutions like custodial Bitcoin banks, the Lightning Network aims to scale Bitcoin without compromising on self custody, which should lead to greater censorship resistance in the Bitcoin ecosystem. However, the Lightning Network operates under a different security model, which introduces novel security and privacy challenges.
 A diferencia de las soluciones de escalado triviales como los bancos de custodia de Bitcoin, Lightning Network tiene como objetivo escalar Bitcoin sin comprometer la autocustodia, lo que debería conducir a una mayor resistencia a la censura en el ecosistema de Bitcoin. Sin embargo, Lightning Network opera bajo un modelo de seguridad diferente, que presenta nuevos desafíos de seguridad y privacidad.
 
 === Definiciones de privacidad
 
 ((("seguridad y privacidad","definiciones de privacidad", id="ix_16_security_privacy_ln-asciidoc1", range="startofrange"))) A la pregunta, "¿Es Lightning privado?", no hay una respuesta directa. La privacidad es un tema complejo; a menudo es difícil definir con precisión lo que entendemos por privacidad, especialmente si no eres un investigador de privacidad. Afortunadamente, los investigadores de la privacidad utilizan proceesos para analizar y evaluar las características de un sistema en cuanto a privacidad, ¡y nosotros podemos utilizarlas también! Veamos cómo un investigador de seguridad podría tratar de responder a la pregunta "¿Es Lightning privado?" en dos pasos generales.
-//The question, "Is Lightning private?" has no direct answer. Privacy is a complex topic; it is often difficult to precisely define what we mean by privacy, particularly if you are not a privacy researcher. Fortunately, privacy researchers use processes to analyze and evaluate the privacy characteristics of systems, and we can use them too! Let's look at how a security researcher might seek to answer the question, "Is Lightning private?" in two general steps.
 
 Primero, un investigador de privacidad definiría un _modelo de seguridad_ que especifica lo que un adversario es capaz de hacer y pretende lograr.
 Luego, describiría las propiedades relevantes del sistema y verificaría si cumple con los requisitos.
@@ -180,7 +177,7 @@ Un adversario en camino puede aprovechar cualquier información que pueda obtene
 
 ((("adversario fuera de la ruta")))Primero, considera al _adversario_ fuera de la ruta. En el primer paso de este escenario de ataque, un potente adversario fuera de ruta deduce los saldos individuales en cada canal de pago a través de un sondeo (descrito en una sección posterior) y forma una instantánea de la red en el momento __t~1~__. Para simplificar, hagamos que __t~1~__ sea igual a 12:05. Luego sondea la red nuevamente en algún momento posterior en el tiempo __t~2~__, que haremos 12:10. Luego, el atacante compararía las instantáneas a las 12:10 y las 12:05 y usaría las diferencias entre las dos instantáneas para inferir información sobre los pagos que se realizaron al observar las rutas que han cambiado. En el caso más simple, si solo se produjera un pago entre las 12:10 y las 12:05, el adversario observaría un único camino donde los saldos han cambiado en las mismas cantidades. Así, el adversario aprende casi todo sobre este pago: el remitente, el destinatario y el monto. Si varias rutas de pago se superponen, el adversario debe aplicar heurísticas para identificar dicha superposición y separar los pagos. 
 
-((("adversario en la ruta"))) Ahora, dirigimos nuestra atención a un _adversario en la ruta.
+((("adversario en la ruta"))) Ahora, dirigimos nuestra atención a un _adversario en la ruta_.
 Tal adversario puede parecer complicado.
 Sin embargo, en junio de 2020, los investigadores notaron que el único nodo más central https://arxiv.org/pdf/2006.12143.pdf[observó cerca del 50% de todos los pagos de LN], mientras que los cuatro nodos más centrales. https://arxiv.org/pdf/1909.06890.pdf[observó un promedio de 72% de pagos].
 
@@ -201,8 +198,6 @@ Un adversario en ruta puede mantener un registro de cada pago enrutado, junto co
 Antes de comenzar el ataque, el atacante aprende las características de latencia de cada nodo en Lightning Network enviándoles solicitudes.
 Naturalmente, esto puede ayudar a establecer la posición precisa del adversario en la ruta de pago.
 Más aún, como se demostró recientemente, un atacante puede determinar con éxito el remitente y el destinatario de un pago a partir de un conjunto de posibles remitentes y destinatarios utilizando estimadores basados en el tiempo.
-
-Finally, it's important to recognize that unknown or unstudied leakages probably exist that could aid de-anonymizing attempts. For instance, because different Lightning wallets apply different routing algorithms, even knowing the applied routing algorithm could help exclude certain nodes from being a sender and/or receiver of a payment.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc4")))
 
 Finalmente, es importante reconocer que probablemente existan filtraciones desconocidas o no estudiadas que podrían ayudar a los intentos de anonimización. Por ejemplo, debido a que diferentes carteras Lightning aplican diferentes algoritmos de enrutamiento, incluso sabiendo que el algoritmo de enrutamiento aplicado podría ayudar a excluir ciertos nodos de ser un remitente y/o receptor de un pago.(((range="endofrange", startref="ix_16_security_privacy_ln-asciidoc4 ")))
 
