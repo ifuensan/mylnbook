@@ -15,7 +15,7 @@ Suponemos que ya tienes algunos conocimientos básicos sobre Bitcoin, pero si no
 Si bien la mayor parte de este libro está escrita para programadores, los primeros capítulos están escritos para que cualquier persona, independientemente de su experiencia técnica, pueda entenderlos. En este capítulo, comenzaremos con algunos términos, luego pasaremos a hablar sobre la confianza y su aplicación en estos sistemas, y finalmente discutiremos la historia y el futuro de la Red Lightning. ¡Comencemos!
 
 
-=== Lightning Network Basic Concepts
+=== Conceptos básicos de Lightning Network
 
 ((("Red Lightning (generalmente)","conceptos básicos", id="ix_01_introduction-asciidoc1", range="startofrange")))A medida que exploramos cómo funciona realmente la Red Lightning, nos encontraremos con algunos términos técnicos que pueden ser un poco confusos al principio. Si bien todos estos conceptos y términos se explicarán en detalle a medida que avancemos en el libro y se definen en el glosario, algunas definiciones básicas ahora facilitarán la comprensión de los conceptos en los próximos dos capítulos. Si aún no comprendes todas las palabras en estas definiciones, no te preocupes. Entenderás más a medida que avances en el texto.
 
