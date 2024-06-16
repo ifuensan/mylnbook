@@ -2,7 +2,7 @@
 [[intro_what_is_the_lightning_network]]
 == Introducción
 
-Bienvenido to _Mastering the Lightning Network_!
+Bienvenido a _Mastering the Lightning Network_!
 
 ((("Red Lightning (generalmente)", seealso="innovaciones en Lightning", id="ix_01_introduction-asciidoc0", range="startofrange")))La Red Lightning (a menudo abreviada como LN) está cambiando la forma en que las personas intercambian valor en línea, y es uno de los avances más emocionantes que ha ocurrido en la historia de Bitcoin.
 Hoy, en 2021, la Red Lightning todavía está en sus primeras etapas. La Red Lightning es un protocolo para usar Bitcoin de una manera inteligente y no obvia. Es una tecnología de segunda capa sobre Bitcoin.
@@ -17,9 +17,9 @@ Si bien la mayor parte de este libro está escrita para programadores, los prime
 
 === Lightning Network Basic Concepts
 
-((("Lightning Network (generally)","basic concepts", id="ix_01_introduction-asciidoc1", range="startofrange")))As we explore how the Lightning Network actually works, we will encounter some technical terminology that might, at first, be a bit confusing. While all of these concepts and terms will be explained in detail as we progress through the book and are defined in the glossary, some basic definitions now will make it easier to understand the concepts in the next two chapters. If you don't understand all of the words in these definitions yet, that's OK. You'll understand more as you move through the text.
+((("Red Lightning (generalmente)","conceptos básicos", id="ix_01_introduction-asciidoc1", range="startofrange")))A medida que exploramos cómo funciona realmente la Red Lightning, nos encontraremos con algunos términos técnicos que pueden ser un poco confusos al principio. Si bien todos estos conceptos y términos se explicarán en detalle a medida que avancemos en el libro y se definen en el glosario, algunas definiciones básicas ahora facilitarán la comprensión de los conceptos en los próximos dos capítulos. Si aún no comprendes todas las palabras en estas definiciones, no te preocupes. Entenderás más a medida que avances en el texto.
 
-Blockchain:: ((("blockchain","defined")))A distributed transaction ledger, produced by a network of computers. Bitcoin, for example, is a system that produces a blockchain. The Lightning Network is not itself a blockchain, nor does it produce a blockchain. It is a network that relies on an existing external blockchain for its security.
+Blockchain:: ((("blockchain","definido")))Un libro mayor de transacciones distribuido, producido por una red de computadoras. Bitcoin, por ejemplo, es un sistema que produce una blockchain. La Red Lightning no es en sí misma una blockchain, ni produce una blockchain. Es una red que depende de una blockchain externa existente para su seguridad.
 
 Digital signature:: ((("digital signatures")))A digital signature is a mathematical scheme for verifying the authenticity of digital messages or documents. A valid digital signature gives a recipient reason to believe that the message was created by a known sender, that the sender cannot deny having sent the message, and that the message was not altered in transit.
 
