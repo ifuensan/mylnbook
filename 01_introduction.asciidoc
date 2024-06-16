@@ -4,15 +4,15 @@
 
 Welcome to _Mastering the Lightning Network_!
 
-((("Lightning Network (generally)", seealso="innovations in Lightning", id="ix_01_introduction-asciidoc0", range="startofrange")))The Lightning Network (often abbreviated as LN), is changing the way people exchange value online, and it's one of the most exciting advancements to happen in Bitcoin's history.
-Today, in 2021, the Lightning Network is still in its infancy. The Lightning Network is a protocol for using Bitcoin in a smart and nonobvious way. It is a second layer technology on top of Bitcoin.
+((("Red Lightning (generalmente)", seealso="innovaciones en Lightning", id="ix_01_introduction-asciidoc0", range="startofrange")))La Red Lightning (a menudo abreviada como LN) está cambiando la forma en que las personas intercambian valor en línea, y es uno de los avances más emocionantes que ha ocurrido en la historia de Bitcoin.
+Hoy, en 2021, la Red Lightning todavía está en sus primeras etapas. La Red Lightning es un protocolo para usar Bitcoin de una manera inteligente y no obvia. Es una tecnología de segunda capa sobre Bitcoin.
 
-The concept of the Lightning Network was proposed in 2015, and the first implementation was launched in 2018. As of 2021, we're only beginning to see the opportunities the Lightning Network provides to Bitcoin, including improved privacy, speed, and scale.
-With core knowledge of the Lightning Network, you can help shape the future of the network while also building opportunities for yourself.
+El concepto de la Red Lightning fue propuesto en 2015 y la primera implementación se lanzó en 2018. A partir de 2021, apenas estamos comenzando a ver las oportunidades que la Red Lightning brinda a Bitcoin, incluida una mayor privacidad, velocidad y escala.
+Con un conocimiento básico de la Red Lightning, puedes ayudar a dar forma al futuro de la red mientras construyes oportunidades para ti mismo.
 
-We assume you already have some basic knowledge about Bitcoin, but if not, don't worry—we will explain the most important Bitcoin concepts, those you must know to understand the Lightning Network, in <<bitcoin_fundamentals_review>>. If you want to learn more about Bitcoin, you can read _Mastering Bitcoin_, 2nd edition, by Andreas M. Antonopoulos (O'Reilly), available https://github.com/bitcoinbook/bitcoinbook[for free online].
+Suponemos que ya tienes algunos conocimientos básicos sobre Bitcoin, pero si no es así, no te preocupes: explicaremos los conceptos más importantes de Bitcoin, aquellos que debes conocer para entender la Red Lightning, en <<bitcoin_fundamentals_review>>. Si quieres aprender más sobre Bitcoin, puedes leer _Mastering Bitcoin_, 2da edición, de Andreas M. Antonopoulos (O'Reilly), disponible https://github.com/bitcoinbook/bitcoinbook[en línea de forma gratuita].
 
-While the bulk of this book is written for programmers, the first few chapters are written to be approachable by anyone regardless of technical experience. In this chapter, we'll start with some terminology, then move to look at trust and its application in these systems, and finally we'll discuss the history and future of the Lightning Network. Let's get started.
+Si bien la mayor parte de este libro está escrita para programadores, los primeros capítulos están escritos para que cualquier persona, independientemente de su experiencia técnica, pueda entenderlos. En este capítulo, comenzaremos con algunos términos, luego pasaremos a hablar sobre la confianza y su aplicación en estos sistemas, y finalmente discutiremos la historia y el futuro de la Red Lightning. ¡Comencemos!
 
 
 === Lightning Network Basic Concepts
