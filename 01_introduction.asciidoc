@@ -2,7 +2,7 @@
 [[intro_what_is_the_lightning_network]]
 == Introducción
 
-Welcome to _Mastering the Lightning Network_!
+Bienvenido to _Mastering the Lightning Network_!
 
 ((("Red Lightning (generalmente)", seealso="innovaciones en Lightning", id="ix_01_introduction-asciidoc0", range="startofrange")))La Red Lightning (a menudo abreviada como LN) está cambiando la forma en que las personas intercambian valor en línea, y es uno de los avances más emocionantes que ha ocurrido en la historia de Bitcoin.
 Hoy, en 2021, la Red Lightning todavía está en sus primeras etapas. La Red Lightning es un protocolo para usar Bitcoin de una manera inteligente y no obvia. Es una tecnología de segunda capa sobre Bitcoin.
