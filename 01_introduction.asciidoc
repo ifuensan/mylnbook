@@ -15,13 +15,14 @@ Suponemos que ya tienes algunos conocimientos básicos sobre Bitcoin, pero si no
 Si bien la mayor parte de este libro está escrita para programadores, los primeros capítulos están escritos para que cualquier persona, independientemente de su experiencia técnica, pueda entenderlos. En este capítulo, comenzaremos con algunos términos, luego pasaremos a hablar sobre la confianza y su aplicación en estos sistemas, y finalmente discutiremos la historia y el futuro de la Red Lightning. ¡Comencemos!
 
 
-=== Conceptos básicos de Lightning Network
+=== Conceptos Básicos de Lightning Network
 
+((("Red Lightning (generalmente)","conceptos básicos", id="ix_01_introduction-asciidoc1", range="startofrange")))A medida que exploramos cómo funciona realmente la Red Lightning, nos encontraremos con algunos términos técnicos que pueden ser un poco confusos al principio. Si bien todos estos conceptos y términos se explicarán en detalle a medida que avancemos en el libro y se definen en el glosario, algunas definiciones básicas ahora facilitarán la comprensión de los conceptos en los próximos dos capítulos. Si aún no comprende todas las palabras en estas definiciones, no se preocupe. Entenderá más a medida que avance en el texto.
 ((("Red Lightning (generalmente)","conceptos básicos", id="ix_01_introduction-asciidoc1", range="startofrange")))A medida que exploramos cómo funciona realmente la Red Lightning, nos encontraremos con algunos términos técnicos que pueden ser un poco confusos al principio. Si bien todos estos conceptos y términos se explicarán en detalle a medida que avancemos en el libro y se definen en el glosario, algunas definiciones básicas ahora facilitarán la comprensión de los conceptos en los próximos dos capítulos. Si aún no comprendes todas las palabras en estas definiciones, no te preocupes. Entenderás más a medida que avances en el texto.
 
 Blockchain:: ((("blockchain","definido")))Un libro mayor de transacciones distribuido, producido por una red de computadoras. Bitcoin, por ejemplo, es un sistema que produce una blockchain. La Red Lightning no es en sí misma una blockchain, ni produce una blockchain. Es una red que depende de una blockchain externa existente para su seguridad.
 
-Digital signature:: ((("digital signatures")))A digital signature is a mathematical scheme for verifying the authenticity of digital messages or documents. A valid digital signature gives a recipient reason to believe that the message was created by a known sender, that the sender cannot deny having sent the message, and that the message was not altered in transit.
+Firma digital:: ((("firmas digitales")))Una firma digital es un esquema matemático para verificar la autenticidad de mensajes o documentos digitales. Una firma digital válida da al destinatario motivos para creer que el mensaje fue creado por un remitente conocido, que el remitente no puede negar haber enviado el mensaje y que el mensaje no fue alterado durante el envío.
 
 Hash function:: ((("hash function, defined")))A cryptographic hash function is a mathematical algorithm that maps data of arbitrary size to a bit string of a fixed size (a hash) and is designed to be a one-way function, that is, a function which is infeasible to invert.
 
