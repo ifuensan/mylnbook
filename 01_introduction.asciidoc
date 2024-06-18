@@ -18,7 +18,7 @@ Si bien la mayor parte de este libro está escrita para programadores, los prime
 === Conceptos Básicos de Lightning Network
 
 ((("Red Lightning (generalmente)","conceptos básicos", id="ix_01_introduction-asciidoc1", range="startofrange")))A medida que exploramos cómo funciona realmente la Red Lightning, nos encontraremos con algunos términos técnicos que pueden ser un poco confusos al principio. Si bien todos estos conceptos y términos se explicarán en detalle a medida que avancemos en el libro y se definen en el glosario, algunas definiciones básicas ahora facilitarán la comprensión de los conceptos en los próximos dos capítulos. Si aún no comprende todas las palabras en estas definiciones, no se preocupe. Entenderá más a medida que avance en el texto.
-((("Red Lightning (generalmente)","conceptos básicos", id="ix_01_introduction-asciidoc1", range="startofrange")))A medida que exploramos cómo funciona realmente la Red Lightning, nos encontraremos con algunos términos técnicos que pueden ser un poco confusos al principio. Si bien todos estos conceptos y términos se explicarán en detalle a medida que avancemos en el libro y se definen en el glosario, algunas definiciones básicas ahora facilitarán la comprensión de los conceptos en los próximos dos capítulos. Si aún no comprendes todas las palabras en estas definiciones, no te preocupes. Entenderás más a medida que avances en el texto.
+
 
 Blockchain:: ((("blockchain","definido")))Un libro mayor de transacciones distribuido, producido por una red de computadoras. Bitcoin, por ejemplo, es un sistema que produce una blockchain. La Red Lightning no es en sí misma una blockchain, ni produce una blockchain. Es una red que depende de una blockchain externa existente para su seguridad.
 
