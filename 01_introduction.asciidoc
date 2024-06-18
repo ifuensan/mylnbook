@@ -24,7 +24,7 @@ Blockchain:: ((("blockchain","definido")))Un libro mayor de transacciones distri
 
 Firma digital:: ((("firmas digitales")))Una firma digital es un esquema matemático para verificar la autenticidad de mensajes o documentos digitales. Una firma digital válida da al destinatario motivos para creer que el mensaje fue creado por un remitente conocido, que el remitente no puede negar haber enviado el mensaje y que el mensaje no fue alterado durante el envío.
 
-Hash function:: ((("hash function, defined")))A cryptographic hash function is a mathematical algorithm that maps data of arbitrary size to a bit string of a fixed size (a hash) and is designed to be a one-way function, that is, a function which is infeasible to invert.
+Función hash:: ((("función hash, definida")))Una función hash criptográfica es un algoritmo matemático que mapea datos de tamaño arbitrario a una cadena de bits de tamaño fijo (un hash) y está diseñada para ser una función unidireccional, es decir, una función que es difícil de invertir.
 
 Node:: ((("node, defined")))A computer that participates in a network. A Lightning node is a computer that participates in the Lightning Network. A Bitcoin node is a computer that participates in the Bitcoin network. Typically an LN user will run a Lightning node _and_ a Bitcoin node.
 
